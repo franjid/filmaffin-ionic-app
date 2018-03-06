@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { FilmsInTheatres } from '../pages/films-in-theatres/films-in-theatres';
+import { FilmsInTheatresPage } from '../pages/films-in-theatres/films-in-theatres';
 import { LoginPage } from '../pages/login/login';
 
 @Component({
@@ -24,7 +24,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Películas populares', component: HomePage, icon: 'eye' },
-      { title: 'Películas en cartelera', component: FilmsInTheatres, icon: 'film' },
+      { title: 'Películas en cartelera', component: FilmsInTheatresPage, icon: 'film' },
       { title: 'Login', component: LoginPage, icon: 'log-in' }
     ];
 
