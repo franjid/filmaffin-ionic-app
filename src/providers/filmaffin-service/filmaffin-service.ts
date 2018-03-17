@@ -1,5 +1,6 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as Constants from '../../app/constants';
 
 @Injectable()
 export class FilmaffinServiceProvider {
@@ -8,6 +9,10 @@ export class FilmaffinServiceProvider {
   }
 
     getPopularFilms() {
-        return this.http.get('http://localhost:8000/films/popular');
+        return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films/popular');
+    }
+
+    getFilm(idFilm) {
+        return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films/' + idFilm);
     }
 }

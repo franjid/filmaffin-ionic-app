@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {FilmDetailPage} from "../film-detail/film-detail";
+import { FilmDetailPage } from "../film-detail/film-detail";
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service/filmaffin-service';
+import * as Constants from '../../app/constants';
 
 
 @Component({
@@ -9,30 +10,35 @@ import { FilmaffinServiceProvider } from '../../providers/filmaffin-service/film
   templateUrl: 'home.html'
 })
 export class HomePage {
-
     films: any;
+    posterImgHost = Constants.POSTER_IMG_HOST;
 
     constructor(public navCtrl: NavController, public FilmaffinService: FilmaffinServiceProvider) {
+    }
 
-  }
-
-    ionViewDidLoad(){
+    ionViewDidLoad() {
         this.FilmaffinService.getPopularFilms()
             .subscribe(
-                (data) => { // Success
+                (data) => {
                     this.films = data;
                 },
                 (error) =>{
                     console.error(error);
                 }
-            )
+            );
     }
 
     loadFilm(idFilm) {
-        console.log('Loading film page for: ' + idFilm);
-        this.navCtrl.push(FilmDetailPage, {
-          idFilm: idFilm
-        });
-        return;
+        this.FilmaffinService.getFilm(idFilm)
+            .subscribe(
+                (data) => {
+                    this.navCtrl.push(FilmDetailPage, {
+                        film: data[0]
+                    });
+                },
+                (error) =>{
+                    console.error(error);
+                }
+            );
     }
 }
