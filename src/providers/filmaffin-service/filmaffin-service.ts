@@ -12,6 +12,10 @@ export class FilmaffinServiceProvider {
         return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films/popular');
     }
 
+    getFilmsInTheatres() {
+        return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films/in-theatres');
+    }
+
     getFilm(idFilm) {
         return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films/' + idFilm);
     }

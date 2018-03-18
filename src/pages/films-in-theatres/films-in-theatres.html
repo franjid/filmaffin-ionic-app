@@ -13,308 +13,35 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ion-card *ngFor="let film of films" (click)="loadFilm(film.idFilm)">
     <ion-grid>
       <ion-row>
         <ion-col col-4>
-          <img class="poster" src="assets/img/logan-528968427-mmed.jpg">
+          <img class="poster" src="{{ posterImgHost + film.posterImages.small }}">
         </ion-col>
         <ion-col col-8>
-          <h1 class="title">Logan</h1>
+          <h1 class="title">{{ film.title }}</h1>
           <div class="numbers">
-            <ion-badge class="rating" item-left>7,1</ion-badge>
+            <ion-badge class="rating" item-left>{{ film.rating | number }}</ion-badge>
             <span class="numVotes">
-                            12.406
+                            {{ film.numRatings |number }}
                             <ion-icon name="person" item-right small></ion-icon>
                         </span>
-            <ion-badge class="duration" item-right>135 min.</ion-badge>
-            <ion-badge class="year" item-right>2017</ion-badge>
+            <ion-badge class="duration" item-right>{{ film.duration / 60 }} min.</ion-badge>
+            <ion-badge class="year" item-right>{{ film.year }}</ion-badge>
           </div>
           <div class="info1">
             <ion-row>
               <ion-col col-2>
-                <img class="flag" src="assets/img/us.svg">
+                <img class="flag" src="assets/img/flags/{{ film.country }}.svg">
               </ion-col>
               <ion-col col-10>
-                <span class="director">James Mangold</span>
+                <span class="director">{{ film.directors.join(", ") }}</span>
               </ion-col>
             </ion-row>
           </div>
           <div class="cast">
-            Hugh Jackman, Patrick Stewart, Dafne Keen, Boyd Holbrook, Stephen Merchant, Elizabeth Rodriguez, Richard E. Grant, Doris Morgado, Han Soto, Julia Holt, Elise Neal, Al Coronel
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <img class="poster" src="assets/img/logan-528968427-mmed.jpg">
-        </ion-col>
-        <ion-col col-8>
-          <h1 class="title">Logan</h1>
-          <div class="numbers">
-            <ion-badge class="rating" item-left>7,1</ion-badge>
-            <span class="numVotes">
-                            12.406
-                            <ion-icon name="person" item-right small></ion-icon>
-                        </span>
-            <ion-badge class="duration" item-right>135 min.</ion-badge>
-            <ion-badge class="year" item-right>2017</ion-badge>
-          </div>
-          <div class="info1">
-            <ion-row>
-              <ion-col col-2>
-                <img class="flag" src="assets/img/us.svg">
-              </ion-col>
-              <ion-col col-10>
-                <span class="director">James Mangold</span>
-              </ion-col>
-            </ion-row>
-          </div>
-          <div class="cast">
-            Hugh Jackman, Patrick Stewart, Dafne Keen, Boyd Holbrook, Stephen Merchant, Elizabeth Rodriguez, Richard E. Grant, Doris Morgado, Han Soto, Julia Holt, Elise Neal, Al Coronel
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <img class="poster" src="assets/img/logan-528968427-mmed.jpg">
-        </ion-col>
-        <ion-col col-8>
-          <h1 class="title">Logan</h1>
-          <div class="numbers">
-            <ion-badge class="rating" item-left>7,1</ion-badge>
-            <span class="numVotes">
-                            12.406
-                            <ion-icon name="person" item-right small></ion-icon>
-                        </span>
-            <ion-badge class="duration" item-right>135 min.</ion-badge>
-            <ion-badge class="year" item-right>2017</ion-badge>
-          </div>
-          <div class="info1">
-            <ion-row>
-              <ion-col col-2>
-                <img class="flag" src="assets/img/us.svg">
-              </ion-col>
-              <ion-col col-10>
-                <span class="director">James Mangold</span>
-              </ion-col>
-            </ion-row>
-          </div>
-          <div class="cast">
-            Hugh Jackman, Patrick Stewart, Dafne Keen, Boyd Holbrook, Stephen Merchant, Elizabeth Rodriguez, Richard E. Grant, Doris Morgado, Han Soto, Julia Holt, Elise Neal, Al Coronel
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <img class="poster" src="assets/img/logan-528968427-mmed.jpg">
-        </ion-col>
-        <ion-col col-8>
-          <h1 class="title">Logan</h1>
-          <div class="numbers">
-            <ion-badge class="rating" item-left>7,1</ion-badge>
-            <span class="numVotes">
-                            12.406
-                            <ion-icon name="person" item-right small></ion-icon>
-                        </span>
-            <ion-badge class="duration" item-right>135 min.</ion-badge>
-            <ion-badge class="year" item-right>2017</ion-badge>
-          </div>
-          <div class="info1">
-            <ion-row>
-              <ion-col col-2>
-                <img class="flag" src="assets/img/us.svg">
-              </ion-col>
-              <ion-col col-10>
-                <span class="director">James Mangold</span>
-              </ion-col>
-            </ion-row>
-          </div>
-          <div class="cast">
-            Hugh Jackman, Patrick Stewart, Dafne Keen, Boyd Holbrook, Stephen Merchant, Elizabeth Rodriguez, Richard E. Grant, Doris Morgado, Han Soto, Julia Holt, Elise Neal, Al Coronel
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <img class="poster" src="assets/img/logan-528968427-mmed.jpg">
-        </ion-col>
-        <ion-col col-8>
-          <h1 class="title">Logan</h1>
-          <div class="numbers">
-            <ion-badge class="rating" item-left>7,1</ion-badge>
-            <span class="numVotes">
-                            12.406
-                            <ion-icon name="person" item-right small></ion-icon>
-                        </span>
-            <ion-badge class="duration" item-right>135 min.</ion-badge>
-            <ion-badge class="year" item-right>2017</ion-badge>
-          </div>
-          <div class="info1">
-            <ion-row>
-              <ion-col col-2>
-                <img class="flag" src="assets/img/us.svg">
-              </ion-col>
-              <ion-col col-10>
-                <span class="director">James Mangold</span>
-              </ion-col>
-            </ion-row>
-          </div>
-          <div class="cast">
-            Hugh Jackman, Patrick Stewart, Dafne Keen, Boyd Holbrook, Stephen Merchant, Elizabeth Rodriguez, Richard E. Grant, Doris Morgado, Han Soto, Julia Holt, Elise Neal, Al Coronel
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <img class="poster" src="assets/img/logan-528968427-mmed.jpg">
-        </ion-col>
-        <ion-col col-8>
-          <h1 class="title">Logan</h1>
-          <div class="numbers">
-            <ion-badge class="rating" item-left>7,1</ion-badge>
-            <span class="numVotes">
-                            12.406
-                            <ion-icon name="person" item-right small></ion-icon>
-                        </span>
-            <ion-badge class="duration" item-right>135 min.</ion-badge>
-            <ion-badge class="year" item-right>2017</ion-badge>
-          </div>
-          <div class="info1">
-            <ion-row>
-              <ion-col col-2>
-                <img class="flag" src="assets/img/us.svg">
-              </ion-col>
-              <ion-col col-10>
-                <span class="director">James Mangold</span>
-              </ion-col>
-            </ion-row>
-          </div>
-          <div class="cast">
-            Hugh Jackman, Patrick Stewart, Dafne Keen, Boyd Holbrook, Stephen Merchant, Elizabeth Rodriguez, Richard E. Grant, Doris Morgado, Han Soto, Julia Holt, Elise Neal, Al Coronel
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <img class="poster" src="assets/img/logan-528968427-mmed.jpg">
-        </ion-col>
-        <ion-col col-8>
-          <h1 class="title">Logan</h1>
-          <div class="numbers">
-            <ion-badge class="rating" item-left>7,1</ion-badge>
-            <span class="numVotes">
-                            12.406
-                            <ion-icon name="person" item-right small></ion-icon>
-                        </span>
-            <ion-badge class="duration" item-right>135 min.</ion-badge>
-            <ion-badge class="year" item-right>2017</ion-badge>
-          </div>
-          <div class="info1">
-            <ion-row>
-              <ion-col col-2>
-                <img class="flag" src="assets/img/us.svg">
-              </ion-col>
-              <ion-col col-10>
-                <span class="director">James Mangold</span>
-              </ion-col>
-            </ion-row>
-          </div>
-          <div class="cast">
-            Hugh Jackman, Patrick Stewart, Dafne Keen, Boyd Holbrook, Stephen Merchant, Elizabeth Rodriguez, Richard E. Grant, Doris Morgado, Han Soto, Julia Holt, Elise Neal, Al Coronel
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <img class="poster" src="assets/img/logan-528968427-mmed.jpg">
-        </ion-col>
-        <ion-col col-8>
-          <h1 class="title">Logan</h1>
-          <div class="numbers">
-            <ion-badge class="rating" item-left>7,1</ion-badge>
-            <span class="numVotes">
-                            12.406
-                            <ion-icon name="person" item-right small></ion-icon>
-                        </span>
-            <ion-badge class="duration" item-right>135 min.</ion-badge>
-            <ion-badge class="year" item-right>2017</ion-badge>
-          </div>
-          <div class="info1">
-            <ion-row>
-              <ion-col col-2>
-                <img class="flag" src="assets/img/us.svg">
-              </ion-col>
-              <ion-col col-10>
-                <span class="director">James Mangold</span>
-              </ion-col>
-            </ion-row>
-          </div>
-          <div class="cast">
-            Hugh Jackman, Patrick Stewart, Dafne Keen, Boyd Holbrook, Stephen Merchant, Elizabeth Rodriguez, Richard E. Grant, Doris Morgado, Han Soto, Julia Holt, Elise Neal, Al Coronel
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <img class="poster" src="assets/img/logan-528968427-mmed.jpg">
-        </ion-col>
-        <ion-col col-8>
-          <h1 class="title">Logan</h1>
-          <div class="numbers">
-            <ion-badge class="rating" item-left>7,1</ion-badge>
-            <span class="numVotes">
-                            12.406
-                            <ion-icon name="person" item-right small></ion-icon>
-                        </span>
-            <ion-badge class="duration" item-right>135 min.</ion-badge>
-            <ion-badge class="year" item-right>2017</ion-badge>
-          </div>
-          <div class="info1">
-            <ion-row>
-              <ion-col col-2>
-                <img class="flag" src="assets/img/us.svg">
-              </ion-col>
-              <ion-col col-10>
-                <span class="director">James Mangold</span>
-              </ion-col>
-            </ion-row>
-          </div>
-          <div class="cast">
-            Hugh Jackman, Patrick Stewart, Dafne Keen, Boyd Holbrook, Stephen Merchant, Elizabeth Rodriguez, Richard E. Grant, Doris Morgado, Han Soto, Julia Holt, Elise Neal, Al Coronel
+            {{ film.actors.join(", ") }}
           </div>
         </ion-col>
       </ion-row>

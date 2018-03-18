@@ -4,7 +4,6 @@ import { FilmDetailPage } from "../film-detail/film-detail";
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service/filmaffin-service';
 import * as Constants from '../../app/constants';
 
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
