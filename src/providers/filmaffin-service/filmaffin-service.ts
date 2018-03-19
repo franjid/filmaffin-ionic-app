@@ -8,8 +8,11 @@ export class FilmaffinServiceProvider {
   constructor(public http: HttpClient) {
   }
 
-    getPopularFilms() {
-        return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films/popular');
+    getPopularFilms(numResults, offset) {
+        return this.http.get(
+            Constants.FILMAFFIN_API_ENDPOINT +
+            '/films/popular?numResults=' + numResults + '&offset=' + offset
+        );
     }
 
     getFilmsInTheatres() {

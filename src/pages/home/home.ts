@@ -12,6 +12,8 @@ import * as Constants from '../../app/constants';
 export class HomePage {
     films: any;
     posterImgHost = Constants.POSTER_IMG_HOST;
+    numResults: number;
+    resultsOffset: number;
 
     constructor(
         public navCtrl: NavController,
@@ -19,6 +21,8 @@ export class HomePage {
         public FilmaffinService: FilmaffinServiceProvider,
         private toast: Toast
     ) {
+        this.numResults = Constants.NUM_RESULTS_POPULAR_FILMS;
+        this.resultsOffset = 0;
     }
 
     ionViewDidLoad() {
@@ -28,14 +32,54 @@ export class HomePage {
 
         loading.present();
 
-        this.FilmaffinService.getPopularFilms()
+        this.FilmaffinService.getPopularFilms(this.numResults, this.resultsOffset)
             .subscribe(
                 (data) => {
                     loading.dismiss();
                     this.films = data;
+                    this.resultsOffset += this.numResults;
                 },
                 (error) =>{
                     loading.dismiss();
+
+                    this.toast.show(
+                        'No se pueden cargar las películas.' +
+                        ' \n' +
+                        'Revisa tu conexión a internet',
+                        '5000',
+                        'bottom').subscribe(
+                        toast => {
+                            console.log(toast);
+                        }
+                    );
+
+                    console.error(error);
+                }
+            );
+    }
+
+    doInfinite(infiniteScroll) {
+        this.FilmaffinService.getPopularFilms(this.numResults, this.resultsOffset)
+            .subscribe(
+                (data) => {
+                    if (data) { // if we reached the end of results, we don't try to add 'null' results. It would fail
+                        const dataLength = (<any>data).length;
+
+                        for (let i = 0, len = dataLength; i < len; ++i) {
+                            this.films.push(data[i]);
+                        }
+
+                        this.resultsOffset += this.numResults;
+                    } else {
+                        // If there's no data, we reached the end of results,
+                        // therefore we must avoid to continue to try to get more data
+                        infiniteScroll.enable(false);
+                    }
+
+                    infiniteScroll.complete();
+                    },
+                (error) =>{
+                    infiniteScroll.complete();
 
                     this.toast.show(
                         'No se pueden cargar las películas.' +
