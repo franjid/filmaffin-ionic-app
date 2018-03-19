@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Toast } from '@ionic-native/toast';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service/filmaffin-service';
 import * as Constants from '../../app/constants';
 import {FilmDetailPage} from "../film-detail/film-detail";
@@ -12,7 +13,11 @@ export class FilmsInTheatresPage {
     films: any;
     posterImgHost = Constants.POSTER_IMG_HOST;
 
-    constructor(public navCtrl: NavController, public FilmaffinService: FilmaffinServiceProvider) {
+    constructor(
+        public navCtrl: NavController,
+        public FilmaffinService: FilmaffinServiceProvider,
+        private toast: Toast
+    ) {
     }
 
     ionViewDidLoad() {
@@ -22,6 +27,17 @@ export class FilmsInTheatresPage {
                     this.films = data;
                 },
                 (error) =>{
+                    this.toast.show(
+                        'No se pueden cargar las películas.' +
+                        ' \n' +
+                        'Revisa tu conexión a internet',
+                        '5000',
+                        'bottom').subscribe(
+                        toast => {
+                            console.log(toast);
+                        }
+                    );
+
                     console.error(error);
                 }
             );
@@ -36,6 +52,17 @@ export class FilmsInTheatresPage {
                     });
                 },
                 (error) =>{
+                    this.toast.show(
+                        'No se puede cargar la película.' +
+                        ' \n' +
+                        'Revisa tu conexión a internet',
+                        '5000',
+                        'bottom').subscribe(
+                        toast => {
+                            console.log(toast);
+                        }
+                    );
+
                     console.error(error);
                 }
             );

@@ -10,6 +10,7 @@ import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Toast } from '@ionic-native/toast';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FilmaffinServiceProvider } from '../providers/filmaffin-service/filmaffin-service';
@@ -38,6 +39,7 @@ import { FilmaffinServiceProvider } from '../providers/filmaffin-service/filmaff
   providers: [
       StatusBar,
       SplashScreen,
+      Toast,
       {provide: ErrorHandler, useClass: IonicErrorHandler},
       FilmaffinServiceProvider
   ]
