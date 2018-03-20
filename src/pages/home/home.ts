@@ -6,8 +6,8 @@ import { FilmaffinServiceProvider } from '../../providers/filmaffin-service/film
 import * as Constants from '../../app/constants';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+    selector: 'page-home',
+    templateUrl: 'home.html'
 })
 export class HomePage {
     @ViewChild(Content) content: Content;

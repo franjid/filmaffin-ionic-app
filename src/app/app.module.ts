@@ -15,13 +15,16 @@ import { Toast } from '@ionic-native/toast';
 import { HttpClientModule } from '@angular/common/http';
 import { FilmaffinServiceProvider } from '../providers/filmaffin-service/filmaffin-service';
 
+import { TruncatePipe } from './pipes/truncate';
+
 @NgModule({
   declarations: [
       MyApp,
       HomePage,
       FilmsInTheatresPage,
       FilmDetailPage,
-      LoginPage
+      LoginPage,
+      TruncatePipe
   ],
   imports: [
       BrowserModule,
