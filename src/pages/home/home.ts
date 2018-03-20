@@ -164,6 +164,12 @@ export class HomePage {
         this.searchbar.value = '';
     }
 
+    clearSearch() {
+        this.searchbar.value = '';
+        this.films = this.popularFilms;
+        this.content.scrollToTop();
+    }
+
     searchFilm(search) {
         this.infiniteScrollEnabled = false;
 

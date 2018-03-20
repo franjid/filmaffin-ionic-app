@@ -8,7 +8,7 @@
             *ngIf="searchBarVisible"
             (ionInput)="searchFilm($event)"
             (ionCancel)="cancelSearch($event)"
-            (ionClear) = "cancelSearch($event)"
+            (ionClear) = "clearSearch($event)"
             [showCancelButton]="true"
             [debounce]="100"
             placeholder="Buscar por título"
@@ -34,7 +34,7 @@
           <div class="numbers">
             <ion-badge class="rating" item-left>{{ film.rating | number }}</ion-badge>
             <span class="numVotes">
-                            {{ film.numRatings |number }}
+                            {{ film.numRatings | number }}
                             <ion-icon name="person" item-right small></ion-icon>
                         </span>
             <ion-badge class="duration" item-right>{{ film.duration / 60 }} min.</ion-badge>
