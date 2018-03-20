@@ -3,6 +3,13 @@ page-home {
     background: #EDEDED;
   }
 
+  .searchbar-input {
+    border-bottom: 1px solid #88aaff;
+  }
+
+  .searchbar-md .searchbar-input {
+    color: #fff;
+  }
   .poster {
     box-shadow: 1px 1px 5px #888;
   }

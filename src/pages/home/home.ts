@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, LoadingController, Content, Searchbar } from 'ionic-angular';
 import { Toast } from '@ionic-native/toast';
 import { FilmDetailPage } from "../film-detail/film-detail";
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service/filmaffin-service';
@@ -10,10 +10,16 @@ import * as Constants from '../../app/constants';
   templateUrl: 'home.html'
 })
 export class HomePage {
+    @ViewChild(Content) content: Content;
+    @ViewChild('searchbar') searchbar: Searchbar;
+
     films: any;
+    popularFilms: any;
     posterImgHost = Constants.POSTER_IMG_HOST;
     numResults: number;
     resultsOffset: number;
+    infiniteScrollEnabled: boolean;
+    searchBarVisible: boolean;
 
     constructor(
         public navCtrl: NavController,
@@ -23,6 +29,8 @@ export class HomePage {
     ) {
         this.numResults = Constants.NUM_RESULTS_POPULAR_FILMS;
         this.resultsOffset = 0;
+        this.infiniteScrollEnabled = true;
+        this.searchBarVisible = false;
     }
 
     ionViewDidLoad() {
@@ -59,6 +67,11 @@ export class HomePage {
     }
 
     doInfinite(infiniteScroll) {
+        if (!this.infiniteScrollEnabled) {
+            infiniteScroll.complete();
+            return;
+        }
+
         this.FilmaffinService.getPopularFilms(this.numResults, this.resultsOffset)
             .subscribe(
                 (data) => {
@@ -120,6 +133,57 @@ export class HomePage {
                         'No se puede cargar la película.' +
                         ' \n' +
                         'Revisa tu conexión a internet',
+                        '5000',
+                        'bottom').subscribe(
+                        toast => {
+                            console.log(toast);
+                        }
+                    );
+
+                    console.error(error);
+                }
+            );
+    }
+
+    toggleSearchBar() {
+        this.searchBarVisible = !this.searchBarVisible;
+        this.popularFilms = this.films;
+
+        if (this.searchBarVisible) {
+            setTimeout(() => {
+                this.searchbar.setFocus();
+            });
+        }
+    }
+
+    cancelSearch() {
+        this.searchBarVisible = false;
+        this.films = this.popularFilms;
+        this.infiniteScrollEnabled = true;
+        this.content.scrollToTop();
+        this.searchbar.value = '';
+    }
+
+    searchFilm(search) {
+        this.infiniteScrollEnabled = false;
+
+        let searchString = search.target.value;
+        if (searchString.length < 3) {
+            return;
+        }
+
+        this.FilmaffinService.searchFilm(searchString)
+            .subscribe(
+                (data) => {
+                    this.content.scrollToTop();
+
+                    if (data) {
+                        this.films = data;
+                    }
+                },
+                (error) =>{
+                    this.toast.show(
+                        'No se encuentran resultados',
                         '5000',
                         'bottom').subscribe(
                         toast => {

@@ -3,9 +3,19 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Películas populares</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only>
+    <ion-title *ngIf="!searchBarVisible">Películas populares</ion-title>
+    <ion-searchbar #searchbar
+            *ngIf="searchBarVisible"
+            (ionInput)="searchFilm($event)"
+            (ionCancel)="cancelSearch($event)"
+            (ionClear) = "cancelSearch($event)"
+            [showCancelButton]="true"
+            [debounce]="100"
+            placeholder="Buscar por título"
+    >
+    </ion-searchbar>
+    <ion-buttons end *ngIf="!searchBarVisible">
+      <button ion-button icon-only (click)="toggleSearchBar()">
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
