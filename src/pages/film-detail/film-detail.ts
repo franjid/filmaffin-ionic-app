@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FilmaffinServiceProvider } from '../../providers/filmaffin-service/filmaffin-service';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { BigPosterModalPage } from "../big-poster-modal/big-poster-modal";
 import * as Constants from '../../app/constants';
 
 
@@ -15,8 +15,8 @@ export class FilmDetailPage {
 
     constructor(
       public navCtrl: NavController,
-      public navParams: NavParams,
-      public FilmaffinService: FilmaffinServiceProvider
+      public modalCtrl: ModalController,
+      public navParams: NavParams
     ) {
         this.film = {
             title: '',
@@ -40,5 +40,11 @@ export class FilmDetailPage {
 
     ionViewDidLoad() {
         this.film = this.navParams.get('film');
+    }
+
+    openBigPosterModal() {
+        let bigPosterModal = this.modalCtrl.create(BigPosterModalPage, {film: this.film});
+
+        bigPosterModal.present();
     }
 }

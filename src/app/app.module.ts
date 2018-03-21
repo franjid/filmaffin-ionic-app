@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { FilmsInTheatresPage } from '../pages/films-in-theatres/films-in-theatres';
 import { FilmDetailPage } from '../pages/film-detail/film-detail';
 import { LoginPage } from '../pages/login/login';
+import { BigPosterModalPage } from '../pages/big-poster-modal/big-poster-modal';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,6 +25,7 @@ import { TruncatePipe } from './pipes/truncate';
       FilmsInTheatresPage,
       FilmDetailPage,
       LoginPage,
+      BigPosterModalPage,
       TruncatePipe
   ],
   imports: [
@@ -37,7 +39,8 @@ import { TruncatePipe } from './pipes/truncate';
       HomePage,
       FilmsInTheatresPage,
       FilmDetailPage,
-      LoginPage
+      LoginPage,
+      BigPosterModalPage
   ],
   providers: [
       StatusBar,
