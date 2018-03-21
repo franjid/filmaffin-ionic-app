@@ -15,8 +15,8 @@ export class FilmaffinServiceProvider {
         );
     }
 
-    getFilmsInTheatres() {
-        return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films/in-theatres');
+    getFilmsInTheatres(sortBy: string) {
+        return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films/in-theatres?sort=' + sortBy);
     }
 
     getFilm(idFilm: number) {
