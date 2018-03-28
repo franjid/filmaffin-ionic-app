@@ -13,38 +13,34 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let film of films" (click)="loadFilm(film.idFilm)">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <img class="poster" src="{{ posterImgHost + film.posterImages.small }}">
-        </ion-col>
-        <ion-col col-8>
-          <h1 class="title">{{ film.title }}</h1>
+  <div id="popular-films-container" *ngFor="let film of films; let i = index; let even = even">
+    <span *ngIf="even">
+      <div class="film-left" (click)="loadFilm(films[i].idFilm)">
+        <img class="poster" src="{{ posterImgHost + films[i].posterImages.medium }}">
+        <div class="film-info">
+          <!--<span class="title">{{ films[i].title | truncate : 4}}</span>-->
           <div class="numbers">
-            <ion-badge class="rating" item-left>{{ film.rating | number }}</ion-badge>
-            <span class="numVotes">
-                            {{ film.numRatings |number }}
-                            <ion-icon name="person" item-right small></ion-icon>
-                        </span>
-            <ion-badge class="duration" item-right>{{ film.duration / 60 }} min.</ion-badge>
-            <ion-badge class="year" item-right>{{ film.year }}</ion-badge>
+            <ion-badge class="rating" item-left>{{ films[i].rating | number }}</ion-badge>
+            <ion-badge class="numVotes" item-right="">
+              {{ films[i].numRatings | number }}
+              <ion-icon name="person" item-right small></ion-icon>
+            </ion-badge>
           </div>
-          <div class="info1">
-            <ion-row>
-              <ion-col col-2>
-                <img class="flag" src="assets/img/flags/{{ film.country }}.svg">
-              </ion-col>
-              <ion-col col-10>
-                <span class="director">{{ film.directors.join(", ") | truncate : 8 }}</span>
-              </ion-col>
-            </ion-row>
+        </div>
+      </div>
+      <div class="film-right" (click)="loadFilm(films[i + 1].idFilm)">
+        <img class="poster" src="{{ posterImgHost + films[i + 1].posterImages.medium }}">
+        <div class="film-info">
+          <!--<span class="title">{{ films[i + 1].title | truncate : 4}}</span>-->
+          <div class="numbers">
+            <ion-badge class="rating" item-left>{{ films[i + 1].rating | number }}</ion-badge>
+            <ion-badge class="numVotes" item-right="">
+              {{ films[i + 1].numRatings | number }}
+              <ion-icon name="person" item-right small></ion-icon>
+            </ion-badge>
           </div>
-          <div class="cast">
-            {{ film.actors.join(", ") | truncate : 20 }}
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+        </div>
+      </div>
+    </span>
+  </div>
 </ion-content>

@@ -1,9 +1,27 @@
 films-in-theatres {
-  .scroll-content {
-    background: #EDEDED;
+  #popular-films-container {
+    margin: 0;
+  }
+
+  .film-left, .film-right {
+    width: 50%;
+    padding: 0.5em;
+  }
+
+  .film-left {
+    float: left;
+  }
+
+  .film-right {
+    float: right;
+  }
+
+  .film-info {
+    text-align: center;
   }
 
   .poster {
+    width: 100%;
     box-shadow: 1px 1px 5px #888;
   }
 
@@ -16,71 +34,40 @@ films-in-theatres {
     margin: 5px 0;
 
     .rating {
-      font-size: 90%;
+      font-size: 95%;
     }
 
     .numVotes {
       margin-left: 5px;
-      font-size: 10px;
+      font-size: 85%;
     }
 
-    .year, .duration {
-      float: right;
-      margin-top: 2px;
-      margin-left: 4px;
-      font-size: 9px;
+    ion-icon{
+      font-size: 95%;
     }
-  }
-
-  .info1 {
-    .flag {
-      max-width: 65%;
-    }
-
-    .director {
-      font-size: 12px;
-    }
-  }
-
-  .cast {
-    float: left;
-    margin-top: 10px;
-    font-size: 12px;
-    line-height: 150%;
   }
 }
 
 @media(min-width: 410px) {
-  page-home {
-    .numbers {
-      .rating {
-        font-size: 90%;
-      }
-
-      .numVotes {
-        margin-left: 10px;
-        font-size: 11px;
-      }
+  films-in-theatres{
+    .poster {
+      height: 20em;
     }
   }
 }
 
 @media(max-width: 375px) {
-  page-home {
-    .info1 {
-      .flag {
-        margin-top: 3px;
-      }
+  films-in-theatres{
+    .poster {
+      height: 17.5em;
     }
   }
 }
 
 @media(max-width: 320px) {
-  page-home {
-    .numbers {
-      .numVotes {
-        margin-left: 2px;
-      }
+  films-in-theatres{
+    .poster {
+      height: 16em;
     }
   }
 }
