@@ -86,4 +86,5 @@
     <plugin name="cordova-plugin-x-toast" spec="^2.6.2" />
     <allow-navigation href="http://192.168.1.42:8101" />
     <engine name="browser" spec="~4.1.0" />
+    <plugin name="cordova-sqlite-storage" spec="^2.3.0" />
 </widget>

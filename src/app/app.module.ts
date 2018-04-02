@@ -12,11 +12,13 @@ import { BigPosterModalPage } from '../pages/big-poster-modal/big-poster-modal';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Toast } from '@ionic-native/toast';
+import { SQLite } from '@ionic-native/sqlite';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FilmaffinServiceProvider } from '../providers/filmaffin-service/filmaffin-service';
 
 import { TruncatePipe } from './pipes/truncate';
+import { FilmaffinLocalDbServiceProvider } from '../providers/filmaffin-local-db-service/filmaffin-local-db-service';
 
 @NgModule({
   declarations: [
@@ -46,8 +48,10 @@ import { TruncatePipe } from './pipes/truncate';
       StatusBar,
       SplashScreen,
       Toast,
+      SQLite,
       {provide: ErrorHandler, useClass: IonicErrorHandler},
-      FilmaffinServiceProvider
+      FilmaffinServiceProvider,
+      FilmaffinLocalDbServiceProvider
   ]
 })
 export class AppModule {}
