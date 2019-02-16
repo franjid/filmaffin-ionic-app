@@ -10,21 +10,24 @@ export class FilmaffinLocalDbServiceProvider {
     }
 
     setDatabase(db: SQLiteObject) {
-        console.log('setDatabase');
         if(this.db === null){
             this.db = db;
         }
     }
 
-    createFavoriteFilmTable(){
+    createFavoriteFilmTable() {
+        //this.db.executeSql('DROP TABLE favoriteFilm', []);
         let sql = 'CREATE TABLE IF NOT EXISTS ' +
-                    'favoriteFilm(idFilm INTEGER PRIMARY KEY UNIQUE)';
+                    'favoriteFilm(' +
+                        'idFilm INTEGER PRIMARY KEY UNIQUE, ' +
+                        'whenAdded INTEGER' +
+                    ')';
 
         return this.db.executeSql(sql, []);
     }
 
     saveFavoriteFilm(idFilm: number) {
-        let sql = 'INSERT INTO favoriteFilm(idFilm) VALUES(?)';
+        let sql = 'INSERT INTO favoriteFilm(idFilm, whenAdded) VALUES(?, CURRENT_TIMESTAMP)';
 
         return this.db.executeSql(sql, [idFilm]);
     }
@@ -42,5 +45,21 @@ export class FilmaffinLocalDbServiceProvider {
             .then((data)=>{
                 return !!data.rows.length;
             })
+    }
+
+    getFavoriteFilms() {
+        let sql = 'SELECT idFilm FROM favoriteFilm ORDER BY whenAdded DESC';
+
+        return this.db.executeSql(sql, [])
+            .then(response => {
+                let idFilms = [];
+
+                for (let index = 0; index < response.rows.length; index++) {
+                    idFilms.push(response.rows.item(index).idFilm);
+                }
+
+                return Promise.resolve(idFilms);
+            })
+            .catch(error => Promise.reject(error));
     }
 }

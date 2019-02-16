@@ -6,6 +6,7 @@ import { SQLite } from '@ionic-native/sqlite';
 
 import { HomePage } from '../pages/home/home';
 import { FilmsInTheatresPage } from '../pages/films-in-theatres/films-in-theatres';
+import { FavoriteFilmsPage } from '../pages/favorite-films/favorite-films';
 import { LoginPage } from '../pages/login/login';
 
 import { FilmaffinLocalDbServiceProvider } from '../providers/filmaffin-local-db-service/filmaffin-local-db-service';
@@ -32,9 +33,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Películas populares', component: HomePage, icon: 'eye' },
-      { title: 'Películas en cartelera', component: FilmsInTheatresPage, icon: 'film' },
-      { title: 'Login', component: LoginPage, icon: 'log-in' }
+        { title: 'Películas populares', component: HomePage, icon: 'eye' },
+        { title: 'Películas en cartelera', component: FilmsInTheatresPage, icon: 'film' },
+        { title: 'Películas favoritas/Para ver', component: FavoriteFilmsPage, icon: 'star' }
     ];
 
     this.activePage = this.pages[0];

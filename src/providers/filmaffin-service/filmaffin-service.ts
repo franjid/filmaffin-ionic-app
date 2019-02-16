@@ -19,7 +19,7 @@ export class FilmaffinServiceProvider {
         return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films/in-theatres?sort=' + sortBy);
     }
 
-    getFilm(idFilm: number) {
+    getFilm(idFilm) {
         return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films/' + idFilm);
     }
 

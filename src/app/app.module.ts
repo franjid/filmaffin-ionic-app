@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { FilmsInTheatresPage } from '../pages/films-in-theatres/films-in-theatres';
+import { FavoriteFilmsPage } from '../pages/favorite-films/favorite-films';
 import { FilmDetailPage } from '../pages/film-detail/film-detail';
 import { LoginPage } from '../pages/login/login';
 import { BigPosterModalPage } from '../pages/big-poster-modal/big-poster-modal';
@@ -25,6 +26,7 @@ import { FilmaffinLocalDbServiceProvider } from '../providers/filmaffin-local-db
       MyApp,
       HomePage,
       FilmsInTheatresPage,
+      FavoriteFilmsPage,
       FilmDetailPage,
       LoginPage,
       BigPosterModalPage,
@@ -40,6 +42,7 @@ import { FilmaffinLocalDbServiceProvider } from '../providers/filmaffin-local-db
       MyApp,
       HomePage,
       FilmsInTheatresPage,
+      FavoriteFilmsPage,
       FilmDetailPage,
       LoginPage,
       BigPosterModalPage
