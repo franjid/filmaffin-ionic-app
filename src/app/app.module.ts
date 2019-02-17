@@ -14,6 +14,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Toast } from '@ionic-native/toast';
 import { SQLite } from '@ionic-native/sqlite';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FilmaffinServiceProvider } from '../providers/filmaffin-service/filmaffin-service';
@@ -52,6 +53,7 @@ import { FilmaffinLocalDbServiceProvider } from '../providers/filmaffin-local-db
       SplashScreen,
       Toast,
       SQLite,
+      SocialSharing,
       {provide: ErrorHandler, useClass: IonicErrorHandler},
       FilmaffinServiceProvider,
       FilmaffinLocalDbServiceProvider

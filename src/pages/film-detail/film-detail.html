@@ -5,6 +5,9 @@
       <button ion-button icon-only (click)="toggleFavoriteFilm(film.idFilm)">
         <ion-icon name="star" [color]="isFavoriteFilm ? 'yellow' : ''"></ion-icon>
       </button>
+      <button ion-button icon-only (click)="shareFilm(film.idFilm)">
+        <ion-icon name="share"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>

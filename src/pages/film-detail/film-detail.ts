@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { BigPosterModalPage } from "../big-poster-modal/big-poster-modal";
 import * as Constants from '../../app/constants';
 import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service/filmaffin-local-db-service';
@@ -12,13 +13,15 @@ import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local
 export class FilmDetailPage {
     film: any;
     posterImgHost = Constants.POSTER_IMG_HOST;
+    shareUrl = Constants.FILMAFFINITY_SHARE_URL;
     isFavoriteFilm: boolean;
 
     constructor(
       public navCtrl: NavController,
       public modalCtrl: ModalController,
       public navParams: NavParams,
-      public filmaffinLocalDb: FilmaffinLocalDbServiceProvider
+      public filmaffinLocalDb: FilmaffinLocalDbServiceProvider,
+      private socialSharing: SocialSharing
     ) {
         this.film = {
             title: '',
@@ -76,5 +79,11 @@ export class FilmDetailPage {
                     console.error(error);
                 });
         }
+    }
+
+    shareFilm(idFilm: number) {
+        this.socialSharing.share(null, null, null, this.shareUrl + idFilm).then(() => {
+        }).catch(() => {
+        });
     }
 }
