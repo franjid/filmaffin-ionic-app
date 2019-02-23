@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavParams, ModalController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { BigPosterModalPage } from "../big-poster-modal/big-poster-modal";
 import * as Constants from '../../app/constants';
@@ -17,7 +17,6 @@ export class FilmDetailPage {
     isFavoriteFilm: boolean;
 
     constructor(
-      public navCtrl: NavController,
       public modalCtrl: ModalController,
       public navParams: NavParams,
       public filmaffinLocalDb: FilmaffinLocalDbServiceProvider,
@@ -61,9 +60,9 @@ export class FilmDetailPage {
         bigPosterModal.present();
     }
 
-    toggleFavoriteFilm(idFilm: number) {
+    toggleFavoriteFilm() {
         if (this.isFavoriteFilm) {
-            this.filmaffinLocalDb.deleteFavoriteFilm(idFilm)
+            this.filmaffinLocalDb.deleteFavoriteFilm(this.film.idFilm)
                 .then(() => {
                     this.isFavoriteFilm = false;
                 })
@@ -71,7 +70,7 @@ export class FilmDetailPage {
                     console.error(error);
                 });
         } else {
-            this.filmaffinLocalDb.saveFavoriteFilm(idFilm)
+            this.filmaffinLocalDb.saveFavoriteFilm(this.film.idFilm)
                 .then(() => {
                     this.isFavoriteFilm = true;
                 })
@@ -81,8 +80,8 @@ export class FilmDetailPage {
         }
     }
 
-    shareFilm(idFilm: number) {
-        this.socialSharing.share(null, null, null, this.shareUrl + idFilm).then(() => {
+    shareFilm() {
+        this.socialSharing.share(null, null, null, this.shareUrl + this.film.idFilm).then(() => {
         }).catch(() => {
         });
     }

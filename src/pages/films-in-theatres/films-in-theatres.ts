@@ -129,7 +129,7 @@ export class FilmsInTheatresPage {
                     name: 'sort_1',
                     'label': 'Fecha de estreno',
                     value: 'releaseDate',
-                    'checked': this.sortBy == 'releaseDate' ? true : false
+                    'checked': this.sortBy == 'releaseDate'
                 },
                 {
                     type: 'radio',
@@ -137,7 +137,7 @@ export class FilmsInTheatresPage {
                     name: 'sort_2',
                     'label': 'Puntuación',
                     value: 'rating',
-                    'checked': this.sortBy == 'rating' ? true : false
+                    'checked': this.sortBy == 'rating'
                 },
                 {
                     type: 'radio',
@@ -145,7 +145,7 @@ export class FilmsInTheatresPage {
                     name: 'sort_3',
                     'label': 'Más votadas',
                     value: 'numRatings',
-                    'checked': this.sortBy == 'numRatings' ? true : false
+                    'checked': this.sortBy == 'numRatings'
                 }
             ]
         });
