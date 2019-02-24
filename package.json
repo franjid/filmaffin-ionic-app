@@ -1,8 +1,7 @@
 {
-    "name": "Filmaffin",
+    "name": "filmaffin",
     "version": "0.0.1",
-    "author": "Ionic Framework",
-    "homepage": "http://ionicframework.com/",
+    "author": "franjid",
     "private": true,
     "scripts": {
         "clean": "ionic-app-scripts clean",
