@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams, ViewController } from 'ionic-angular';
-import * as Constants from '../../app/constants';
 
 @IonicPage()
 @Component({
@@ -9,7 +8,6 @@ import * as Constants from '../../app/constants';
 })
 export class BigPosterModalPage {
     film: any;
-    posterImgHost = Constants.POSTER_IMG_HOST;
 
     constructor(
         public viewCtrl: ViewController,

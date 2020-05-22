@@ -27,7 +27,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-4>
-          <img class="poster" src="{{ posterImgHost + film.posterImages.small }}">
+          <img class="poster" src="{{ film.posterImages.small | filmImg}}">
         </ion-col>
         <ion-col col-8>
           <h1 class="title">{{ film.title }}</h1>

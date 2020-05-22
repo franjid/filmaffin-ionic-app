@@ -12,7 +12,6 @@ import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local
 })
 export class FilmDetailPage {
     film: any;
-    posterImgHost = Constants.POSTER_IMG_HOST;
     shareUrl = Constants.FILMAFFINITY_SHARE_URL;
     isFavoriteFilm: boolean;
 

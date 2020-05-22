@@ -15,7 +15,6 @@ export class HomePage {
 
     films: any;
     popularFilms: any;
-    posterImgHost = Constants.POSTER_IMG_HOST;
     numResults: number;
     resultsOffset: number;
     infiniteScrollEnabled: boolean;

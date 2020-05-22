@@ -11,5 +11,5 @@
 
 
 <ion-content padding>
-  <img src="{{ posterImgHost + film.posterImages.large }}" (click)="closeModal()">
+  <img src="{{ film.posterImages.large | filmImg}}" (click)="closeModal()">
 </ion-content>

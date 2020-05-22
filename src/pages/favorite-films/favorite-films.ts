@@ -3,7 +3,6 @@ import { IonicPage, NavController, LoadingController } from 'ionic-angular';
 import { Toast } from '@ionic-native/toast';
 import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service/filmaffin-local-db-service';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service/filmaffin-service';
-import * as Constants from '../../app/constants';
 import {FilmDetailPage} from "../film-detail/film-detail";
 
 @IonicPage()
@@ -13,7 +12,6 @@ import {FilmDetailPage} from "../film-detail/film-detail";
 })
 export class FavoriteFilmsPage {
     films: any;
-    posterImgHost = Constants.POSTER_IMG_HOST;
 
     constructor(
         public navCtrl: NavController,

@@ -16,7 +16,7 @@
   <div id="popular-films-container" *ngFor="let film of films; let i = index; let even = even">
     <span *ngIf="even">
       <div class="film-left" (click)="loadFilm(films[i].idFilm)">
-        <img class="poster" src="{{ posterImgHost + films[i].posterImages.medium }}">
+        <img class="poster" src="{{ films[i].posterImages.medium | filmImg}}">
         <div class="film-info">
           <!--<span class="title">{{ films[i].title | truncate : 4}}</span>-->
           <div class="numbers">
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="film-right" (click)="loadFilm(films[i + 1].idFilm)">
-        <img class="poster" src="{{ posterImgHost + films[i + 1].posterImages.medium }}">
+        <img class="poster" src="{{ films[i + 1].posterImages.medium | filmImg}}">
         <div class="film-info">
           <!--<span class="title">{{ films[i + 1].title | truncate : 4}}</span>-->
           <div class="numbers">

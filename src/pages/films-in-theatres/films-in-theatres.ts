@@ -2,7 +2,6 @@ import {Component, ViewChild} from '@angular/core';
 import { NavController, LoadingController, AlertController, Content } from 'ionic-angular';
 import { Toast } from '@ionic-native/toast';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service/filmaffin-service';
-import * as Constants from '../../app/constants';
 import {FilmDetailPage} from "../film-detail/film-detail";
 
 @Component({
@@ -13,7 +12,6 @@ export class FilmsInTheatresPage {
     @ViewChild(Content) content: Content;
 
     films: any;
-    posterImgHost = Constants.POSTER_IMG_HOST;
     sortBy: string;
 
     constructor(

@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FilmaffinServiceProvider } from '../providers/filmaffin-service/filmaffin-service';
 
 import { TruncatePipe } from './pipes/truncate';
+import { FilmImgPipe } from './pipes/film-img';
 import { FilmaffinLocalDbServiceProvider } from '../providers/filmaffin-local-db-service/filmaffin-local-db-service';
 
 @NgModule({
@@ -31,7 +32,8 @@ import { FilmaffinLocalDbServiceProvider } from '../providers/filmaffin-local-db
       FilmDetailPage,
       LoginPage,
       BigPosterModalPage,
-      TruncatePipe
+      TruncatePipe,
+      FilmImgPipe
   ],
   imports: [
       BrowserModule,
