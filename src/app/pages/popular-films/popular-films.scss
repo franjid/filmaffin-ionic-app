@@ -1,0 +1,88 @@
+.poster {
+  box-shadow: 1px 1px 5px #888;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.title {
+  font-size: 18px;
+}
+
+.numbers {
+  clear: both;
+  width: 100%;
+  margin: 5px 0;
+
+  .rating {
+    width: 35px;
+    font-size: 90%;
+  }
+
+  .numVotes {
+    margin: 3px 1px 0 5px;
+    font-size: 70%;
+  }
+
+  .peopleIcon {
+    margin: 3px 0 0 2px;
+    font-size: 70%;
+  }
+
+  .year, .duration {
+    float: right;
+    margin-top: 2px;
+    margin-left: 4px;
+    font-size: 9px;
+  }
+}
+
+.info1 {
+  clear: both;
+
+  .flag {
+    max-width: 65%;
+  }
+
+  .director {
+    font-size: 12px;
+  }
+}
+
+.cast {
+  float: left;
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 150%;
+}
+
+
+@media(min-width: 410px) {
+  .numbers {
+    .rating {
+      font-size: 90%;
+    }
+
+    .numVotes {
+      margin-left: 10px;
+      font-size: 70%;
+    }
+  }
+}
+
+@media(max-width: 375px) {
+  .info1 {
+    .flag {
+      margin-top: 3px;
+    }
+  }
+}
+
+@media(max-width: 320px) {
+  .numbers {
+    .numVotes {
+      margin-left: 2px;
+    }
+  }
+}

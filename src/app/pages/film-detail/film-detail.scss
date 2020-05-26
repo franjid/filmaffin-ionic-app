@@ -1,0 +1,157 @@
+.scroll-content {
+  background: #EDEDED;
+}
+
+#film-title {
+  font-size: 100%;
+}
+
+#film-title.ios {
+  margin-left: 10px;
+}
+
+#film-background {
+  position: relative;
+
+  display: flex;
+
+  padding-top: var(--ion-safe-area-top);
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  height: calc(180px + var(--ion-safe-area-top));
+
+  //background-position: left 0 top -20px;
+  background-position: left 0 top 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: animatedBackground 20s linear infinite alternate;
+}
+
+@keyframes animatedBackground {
+  from {
+    background-position: left 0 top 0;
+  }
+  to {
+    background-position: left 0 bottom 0;
+  }
+}
+
+#main {
+  #poster {
+    box-shadow: 1px 1px 5px #888;
+  }
+
+  #rating {
+    font-size: 150%;
+    float: right;
+  }
+
+  #country {
+    #countryName {
+      float: right;
+      font-size: 14px;
+    }
+
+    #flag {
+      float: right;
+      max-width: 15%;
+      margin-left: 10px;
+    }
+  }
+}
+
+#synopsis {
+  margin-top: -10px;
+  padding: 10px 12px 10px 12px;
+
+  p {
+    line-height: 1.4em;
+    text-align: justify;
+  }
+}
+
+#genre {
+  text-align: center;
+  padding: 0 5px 5px 5px;
+
+  ion-badge {
+    margin: 4px;
+  }
+}
+
+#people {
+  ion-grid {
+    ion-icon {
+      margin-right: 5px;
+    }
+
+    .names {
+      float: right;
+      text-align: right;
+      line-height: 1.4em;
+    }
+  }
+}
+
+
+@media(max-width: 375px) {
+  ion-item {
+    .item-title {
+      font-size: 14px;
+    }
+  }
+
+  ion-badge {
+    font-size: 11px;
+  }
+
+  #main {
+    #rating {
+      font-size: 125%;
+    }
+
+    #country {
+      #countryName {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media(max-width: 320px) {
+  ion-item {
+    .item-title {
+      font-size: 10px;
+    }
+  }
+
+  ion-badge {
+    font-size: 9px;
+  }
+
+  #main {
+    #rating {
+      font-size: 120%;
+    }
+
+    #country {
+      #countryName {
+        font-size: 10px;
+      }
+    }
+  }
+
+  #synopsis {
+    p {
+      font-size: 13px;
+    }
+  }
+
+  #people {
+    font-size: 13px;
+  }
+}

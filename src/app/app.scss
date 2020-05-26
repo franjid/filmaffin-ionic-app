@@ -26,6 +26,27 @@ ion-icon {
   }
 
   &[class*="custom-sort"] {
-    mask-image: url(../assets/svg/sort.svg);
+    mask-image: url(assets/svg/sort.svg);
+  }
+}
+
+ion-menu ion-content {
+  --padding-top: 0 !important;
+}
+
+.sc-ion-searchbar-md-h {
+  --box-shadow: 0 !important;
+}
+
+ion-searchbar {
+  & input {
+    background-color: var(--ion-color-primary) !important;
+    color: var(--ion-color-primary-contrast) !important;
+  }
+}
+
+ion-searchbar {
+  & button {
+    color: var(--ion-color-primary-contrast) !important;
   }
 }
