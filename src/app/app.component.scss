@@ -11,7 +11,7 @@ ion-menu ion-item {
 }
 
 ion-item.selected {
-  --color: var(--ion-color-secondary-shade);
+  --color: var(--ion-color-dark);
 }
 
 /*
@@ -41,11 +41,11 @@ ion-menu.md ion-item {
 }
 
 ion-menu.md ion-item.selected {
-  --background: rgba(var(--ion-color-secondary-rgb), 0.14);
+  --background: rgba(var(--ion-color-yellow-rgb), 0.14);
 }
 
 ion-menu.md ion-item.selected ion-icon {
-  color: var(--ion-color-secondary);
+  color: var(--ion-color-yellow);
 }
 
 ion-menu.md ion-list-header,
