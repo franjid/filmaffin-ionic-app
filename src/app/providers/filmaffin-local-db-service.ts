@@ -1,34 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
+import { LocalDbServiceProvider } from './local-db-service';
 
 @Injectable()
 
 export class FilmaffinLocalDbServiceProvider {
-  db: SQLiteObject;
+  db: any;
 
   constructor(
-    private platform: Platform,
-    private sqlite: SQLite,
+    private localDb: LocalDbServiceProvider
   ) {
-    this.platform.ready().then(() => {
-      this.sqlite.create({
-        name: 'data.db',
-        location: 'default'
-      }).then((db: SQLiteObject) => {
-        this.db = db;
-      });
+    this.localDb.getDb().then((db) => {
+      this.db = db;
     });
-  }
-
-  setDatabase(db: SQLiteObject) {
-    this.db = db;
   }
 
   createFavoriteFilmTable() {
     // this.db.executeSql('DROP TABLE favoriteFilm', []);
 
-    let sql = 'CREATE TABLE IF NOT EXISTS ' +
+    const sql = 'CREATE TABLE IF NOT EXISTS ' +
       'favoriteFilm(' +
       'idFilm INTEGER PRIMARY KEY UNIQUE, ' +
       'whenAdded INTEGER' +
@@ -38,32 +27,32 @@ export class FilmaffinLocalDbServiceProvider {
   }
 
   saveFavoriteFilm(idFilm: number) {
-    let sql = 'INSERT INTO favoriteFilm(idFilm, whenAdded) VALUES(?, CURRENT_TIMESTAMP)';
+    const sql = 'INSERT INTO favoriteFilm(idFilm, whenAdded) VALUES(?, ' + Date.now() + ')';
 
     return this.db.executeSql(sql, [idFilm]);
   }
 
   deleteFavoriteFilm(idFilm: number) {
-    let sql = 'DELETE FROM favoriteFilm WHERE idFilm = ?';
+    const sql = 'DELETE FROM favoriteFilm WHERE idFilm = ?';
 
     return this.db.executeSql(sql, [idFilm]);
   }
 
   isFavoriteFilm(idFilm: number) {
-    let sql = 'SELECT idFilm FROM favoriteFilm WHERE idFilm = ?';
+    const sql = 'SELECT idFilm FROM favoriteFilm WHERE idFilm = ?';
 
     return this.db.executeSql(sql, [idFilm])
       .then((data) => {
         return !!data.rows.length;
-      })
+      });
   }
 
   getFavoriteFilms() {
-    let sql = 'SELECT idFilm FROM favoriteFilm ORDER BY whenAdded DESC';
+    const sql = 'SELECT idFilm FROM favoriteFilm ORDER BY whenAdded DESC';
 
     return this.db.executeSql(sql, [])
       .then(response => {
-        let idFilms = [];
+        const idFilms = [];
 
         for (let index = 0; index < response.rows.length; index++) {
           idFilms.push(response.rows.item(index).idFilm);

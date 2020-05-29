@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { LoadingController, ModalController, ToastController } from '@ionic/angular';
 import * as Constants from '../../constants';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { FilmImgPipe } from "../../pipes/film-img";
-import { BigPosterModalPage } from "../big-poster-modal/big-poster-modal";
-import { FilmaffinServiceProvider } from "../../providers/filmaffin-service";
+import { FilmImgPipe } from '../../pipes/film-img';
+import { BigPosterModalPage } from '../big-poster-modal/big-poster-modal';
+import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service';
 
 @Component({
@@ -56,7 +56,7 @@ export class FilmDetailPage {
   }
 
   async ngOnInit() {
-    const filmId = this.actRoute.snapshot.params['filmId'];
+    const filmId = this.actRoute.snapshot.params.filmId;
 
     await this.loadFilm(filmId);
   }
@@ -95,7 +95,7 @@ export class FilmDetailPage {
                 role: 'cancel',
                 handler: () => {
                   toast.dismiss();
-                  this.loadFilm(filmId)
+                  this.loadFilm(filmId);
                 }
               }
             ]
@@ -121,8 +121,6 @@ export class FilmDetailPage {
   }
 
   toggleFavoriteFilm() {
-    console.log('toggleFavoriteFilm');
-
     if (this.isFavoriteFilm) {
       this.filmaffinLocalDb.deleteFavoriteFilm(this.film.idFilm)
         .then(() => {

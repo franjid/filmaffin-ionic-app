@@ -8,8 +8,9 @@ import { IonicModule } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { SQLite } from "@ionic-native/sqlite/ngx";
-import { FilmaffinLocalDbServiceProvider } from "./providers/filmaffin-local-db-service";
+import { FilmaffinLocalDbServiceProvider } from './providers/filmaffin-local-db-service';
+import { LocalDbServiceProvider } from './providers/local-db-service';
+import { SQLite } from '@ionic-native/sqlite/ngx';
 
 @NgModule({
   imports: [
@@ -20,7 +21,13 @@ import { FilmaffinLocalDbServiceProvider } from "./providers/filmaffin-local-db-
     IonicModule.forRoot(),
   ],
   declarations: [AppComponent],
-  providers: [SplashScreen, StatusBar, SQLite, FilmaffinLocalDbServiceProvider],
+  providers: [
+    SplashScreen,
+    StatusBar,
+    SQLite,
+    LocalDbServiceProvider,
+    FilmaffinLocalDbServiceProvider
+  ],
   bootstrap: [AppComponent]
 })
 

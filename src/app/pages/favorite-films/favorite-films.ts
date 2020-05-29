@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import { Router } from '@angular/router';
-import { FilmaffinLocalDbServiceProvider } from "../../providers/filmaffin-local-db-service";
+import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service';
 
 @Component({
   selector: 'page-favorite-films',
