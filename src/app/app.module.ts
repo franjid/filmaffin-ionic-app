@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -12,6 +12,10 @@ import { FilmaffinLocalDbServiceProvider } from './providers/filmaffin-local-db-
 import { LocalDbServiceProvider } from './providers/local-db-service';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 
+import es from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(es);
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -22,6 +26,10 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
   ],
   declarations: [AppComponent],
   providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'es-*'
+    },
     SplashScreen,
     StatusBar,
     SQLite,

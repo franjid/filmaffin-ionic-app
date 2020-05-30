@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
     </ion-buttons>
-    <ion-title id="film-title">{{ film.title }}</ion-title>
+    <ion-title id="film-title" class="ion-text-center">{{ film.title }}</ion-title>
 
     <ion-buttons slot="end">
       <ion-button (click)="toggleFavoriteFilm()">
@@ -17,112 +17,62 @@
 </ion-header>
 
 <ion-content *ngIf="film.title">
-  <div id="film-background" [ngStyle]="{'background-image': 'url(' + posterBackground + ')'}" (click)="openBigPosterModal()">
+  <div id="film-background" [ngStyle]="{'background-image': 'url(' + posterBackground + ')'}"
+       (click)="openBigPosterModal()">
+    <img id="flag" src="assets/img/flags/{{ film.country }}.svg" alt="{{ film.country }}">
+    <ion-badge id="rating">{{ film.rating | number:'1.1-2':'es' }}</ion-badge>
+    <ion-buttons id="num-ratings" *ngIf="film.numRatings !== 0">
+      <ion-icon slot="start" name="people"></ion-icon>
+      <ion-badge slot="end">{{ film.numRatings | number }}</ion-badge>
+    </ion-buttons>
   </div>
 
-  <ion-card>
-    <ion-grid id="main">
+  <div id="main">
+    <h1>{{ film.title }}</h1>
+    <h2 *ngIf="film.title !== film.originalTitle">{{ film.originalTitle }}</h2>
+
+    <div id="year">
+      <span>{{ film.year }}</span> <span>{{ film.duration / 60 }} min.</span>
+    </div>
       <ion-row>
-        <ion-col size="6">
-          <img id="poster" src="{{ film.posterImages.medium | filmImg}}" (click)="openBigPosterModal()">
-        </ion-col>
-        <ion-col size="6">
-          <ion-item>
-            <div class="item-title">Votación</div>
-            <ion-badge id="rating" item-right>{{ film.rating }}</ion-badge>
-          </ion-item>
-          <ion-item>
-            <div class="item-title">Votos</div>
-            <ion-badge item-right>{{ film.numRatings | number }}</ion-badge>
-          </ion-item>
-          <ion-item>
-            <ion-badge item-right>{{ film.year }}</ion-badge>
-            <ion-badge item-right>{{ film.duration / 60 }} min.</ion-badge>
-          </ion-item>
-          <ion-item>
-            <div id="country">
-              <img id="flag" src="assets/img/flags/{{ film.country }}.svg" right>
-              <!--<div id="countryName">Estados Unidos</div>-->
-            </div>
-          </ion-item>
-        </ion-col>
+<!--        <ion-col size="6">-->
+<!--          <img id="poster" src="{{ film.posterImages.medium | filmImg}}" (click)="openBigPosterModal()">-->
+<!--        </ion-col>-->
       </ion-row>
-    </ion-grid>
 
     <div id="synopsis">
       <p>{{ film.synopsis }}</p>
     </div>
 
     <div id="genre">
-      <ion-badge item-right *ngFor="let topic of film.topics">{{ topic }}</ion-badge>
+      <ion-badge *ngFor="let topic of film.topics">{{ topic }}</ion-badge>
     </div>
-  </ion-card>
 
-  <ion-card id="people">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <ion-icon name="film" item-left size="small"></ion-icon>
-          Título
-        </ion-col>
-        <ion-col col-8>
-          <div class="names">{{ film.title }}</div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <ion-icon name="film" item-left small></ion-icon>
-          Título original
-        </ion-col>
-        <ion-col col-8>
-          <div class="names">{{ film.originalTitle }}</div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="4">
-          <ion-icon name="videocam" item-left small></ion-icon>
-          Director
-        </ion-col>
-        <ion-col size="8">
-          <div class="names">{{ film.directors.join(", ") }}</div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <ion-icon name="book" item-left small></ion-icon>
-          Guión
-        </ion-col>
-        <ion-col size="8">
-          <div class="names">{{ film.screenplayers.join(", ") }}</div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <ion-icon name="musical-notes" item-left small></ion-icon>
-          Música
-        </ion-col>
-        <ion-col size="8">
-          <div class="names">{{ film.musicians.join(", ") }}</div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <ion-icon name="camera" item-left small></ion-icon>
-          Fotografía
-        </ion-col>
-        <ion-col size="8">
-          <div class="names">{{ film.cinematographers.join(", ") }}</div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <ion-icon name="people" item-left small></ion-icon>
-          Reparto
-        </ion-col>
-        <ion-col size="6">
-          <div class="names">{{ film.actors.join(", ") }}</div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+    <div id="people">
+      <div class="people-element">
+        <span class="title">Dirección</span>
+        <span class="content">{{ film.directors.join(", ") }}</span>
+      </div>
+
+      <div class="people-element">
+        <span class="title">Guión</span>
+        <span class="content">{{ film.screenplayers.join(", ") }}</span>
+      </div>
+
+      <div class="people-element">
+        <span class="title">Reparto</span>
+        <span class="content">{{ film.actors.join(", ") }}</span>
+      </div>
+
+      <div class="people-element">
+        <span class="title">Música</span>
+        <span class="content">{{ film.musicians.join(", ") }}</span>
+      </div>
+
+      <div class="people-element">
+        <span class="title">Fotografía</span>
+        <span class="content">{{ film.cinematographers.join(", ") }}</span>
+      </div>
+    </div>
+  </div>
 </ion-content>
