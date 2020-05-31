@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content *ngIf="film.title">
-  <div id="film-background" [ngStyle]="{'background-image': 'url(' + posterBackground + ')'}"
+  <div id="film-background" [ngStyle]="{'background-image': 'url(' + (film.posterImages.large | filmImg) + ')'}"
        (click)="openBigPosterModal()">
     <img id="flag" src="assets/img/flags/{{ film.country }}.svg" alt="{{ film.country }}">
     <ion-badge id="rating">{{ film.rating | number:'1.1-2':'es' }}</ion-badge>

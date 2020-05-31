@@ -20,7 +20,6 @@ export class FilmDetailPage {
   shareUrl = Constants.FILMAFFINITY_SHARE_URL;
   isFavoriteFilm: boolean | null = null;
   defaultHref: string;
-  posterBackground: string;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -72,7 +71,6 @@ export class FilmDetailPage {
       .subscribe(
         (data) => {
           this.film = data[0];
-          this.posterBackground = this.filmImgPipe.transform(this.film.posterImages.large);
 
           loading.dismiss();
 

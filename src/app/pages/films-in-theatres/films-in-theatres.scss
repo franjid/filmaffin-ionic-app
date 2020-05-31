@@ -3,7 +3,9 @@
 }
 
 .film-left, .film-right {
+  height: 265px;
   width: 50%;
+  margin: 0 0 8px 0;
   padding: 0.5em;
 }
 
@@ -15,52 +17,74 @@
   float: right;
 }
 
-.film-info {
-  text-align: center;
-}
+.poster-background {
+  position: relative;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-.poster {
-  width: 100%;
-  box-shadow: 1px 1px 5px #888;
-}
-
-.title {
-  font-size: 15px;
-}
-
-.numbers {
-  clear: both;
-  margin: 5px 0;
+  .poster {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 1px 1px 3px #ddd;
+  }
 
   .rating {
-    font-size: 95%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0 5px 5px 0;
+    padding: 3px 5px 3px 5px;
+    font-size: 130%;
+    color: var(--ion-color-yellow-tint);
+    background-color: rgba(var(--ion-color-primary-rgb), 0.90);
   }
 
-  .numVotes {
-    margin-left: 5px;
-    font-size: 85%;
-  }
+  .num-ratings {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0 0 2px 0;
+    padding: 3px 5px 3px 5px;
+    font-weight: normal;
 
-  ion-icon {
-    font-size: 95%;
+    ion-icon {
+      font-size: 60%;
+      color: rgba(var(--ion-color-primary-rgb), 0.70);
+    }
+
+    ion-badge {
+      font-size: 60%;
+      font-weight: normal;
+      background-color: rgba(var(--ion-color-primary-rgb), 0.80);
+    }
   }
 }
 
-@media(min-width: 410px) {
-  .poster {
-    height: 20em;
+@media(max-width: 410px) {
+  .film-left, .film-right {
+    height: 305px;
   }
 }
 
 @media(max-width: 375px) {
-  .poster {
-    height: 17.5em;
+  .film-left, .film-right {
+    height: 285px;
   }
 }
 
-@media(max-width: 320px) {
-  .poster {
-    height: 16em;
+@media(max-width: 360px) {
+  .film-left, .film-right {
+    height: 260px;
   }
 }
 
+@media(max-width: 325px) {
+  .film-left, .film-right {
+    height: 240px;
+  }
+}
