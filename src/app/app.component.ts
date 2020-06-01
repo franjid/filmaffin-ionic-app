@@ -14,23 +14,6 @@ import { LocalDbServiceProvider } from "./providers/local-db-service";
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  appPages = [
-    {
-      title: 'Películas populares',
-      url: '/films/popular',
-      icon: 'eye'
-    },
-    {
-      title: 'Películas en cartelera',
-      url: '/films/theatres',
-      icon: 'film'
-    },
-    {
-      title: 'Películas favoritas/Para ver',
-      url: '/films/favorite',
-      icon: 'star'
-    },
-  ];
   dark = false;
 
   constructor(

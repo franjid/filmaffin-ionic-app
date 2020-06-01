@@ -49,6 +49,7 @@ export class FavoriteFilmsPage {
             async (error) => {
               const toast = await this.ToastCtrl.create({
                 message: 'No se pueden cargar las películas.' + ' \n' + 'Revisa tu conexión a internet.',
+                duration: 5000,
                 buttons: [
                   {
                     text: 'Ok',
