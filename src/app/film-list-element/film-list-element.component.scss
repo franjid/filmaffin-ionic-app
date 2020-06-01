@@ -1,0 +1,149 @@
+h1 {
+  margin: 10px;
+  font-size: 150%;
+  text-align: center;
+}
+
+.film {
+  float: left;
+  width: 100%;
+  min-height: 28%;
+  margin-bottom: 3px;
+  padding: 10px;
+  border-bottom: 1px solid var(--ion-color-light-shade);
+  background-color: rgba(var(--ion-color-primary-rgb), 0.03);
+
+  .poster-background {
+    position: relative;
+    float: left;
+    width: 35%;
+    margin: 0 2% 0 0;
+
+    .poster {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: 1px 1px 3px #ddd;
+    }
+
+    .rating {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 0 5px 5px 0;
+      padding: 3px 5px 3px 5px;
+      font-size: 130%;
+      color: var(--ion-color-yellow-tint);
+      background-color: rgba(var(--ion-color-primary-rgb), 0.90);
+    }
+
+    .num-ratings {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      margin: 0 0 2px 0;
+      padding: 3px 5px 3px 5px;
+      font-weight: normal;
+
+      ion-icon {
+        font-size: 60%;
+        color: rgba(var(--ion-color-primary-rgb), 0.70);
+      }
+
+      ion-badge {
+        font-size: 60%;
+        font-weight: normal;
+        background-color: rgba(var(--ion-color-primary-rgb), 0.80);
+      }
+    }
+  }
+
+  .film-info {
+    float: right;
+    width: 63%;
+
+    h2 {
+      margin: 0;
+      font-size: 125%;
+      font-weight: bold;
+      color: var(--ion-color-dark);
+    }
+
+    h3 {
+      margin: 3px 0 0 0;
+      font-size: 90%;
+      font-weight: normal;
+      color: var(--ion-color-medium);
+    }
+
+    .year {
+      margin: 10px 0 0 0;
+      color: var(--ion-color-medium);
+      font-size: 80%;
+
+      span {
+        margin-right: 15px;
+      }
+
+      .flag {
+        float: right;
+        width: 7%;
+      }
+    }
+
+    .director {
+      font-size: 90%;
+      margin: 8px 0 10px 0;
+      color: var(--ion-color-dark-tint);
+    }
+
+    .cast {
+      float: left;
+      font-size: 80%;
+      line-height: 150%;
+      color: var(--ion-color-dark-tint);
+    }
+  }
+}
+
+@media(max-width: 415px) {
+  .film {
+    font-size: 100%;
+  }
+
+  .poster-background {
+    height: 195px;
+  }
+}
+
+@media(max-width: 375px) {
+  .film {
+    font-size: 95%;
+  }
+
+  .poster-background {
+    height: 185px;
+  }
+}
+
+@media(max-width: 360px) {
+  .film {
+    font-size: 90%;
+  }
+
+  .poster-background {
+    height: 175px;
+  }
+}
+
+@media(max-width: 325px) {
+  .film {
+    font-size: 80%;
+  }
+
+  .poster-background {
+    height: 160px;
+  }
+}

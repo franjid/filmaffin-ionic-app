@@ -1,0 +1,24 @@
+<div class="film" (click)="loadFilm(film.idFilm)">
+  <div class="poster-background">
+    <img class="poster" src="{{ film.posterImages.small | filmImg}}" alt="{{ film.title }}">
+
+    <ion-badge class="rating">{{ film.rating | number:'1.1-2':'es' }}</ion-badge>
+    <ion-buttons class="num-ratings" *ngIf="film.numRatings !== 0">
+      <ion-icon slot="start" name="people"></ion-icon>
+      <ion-badge slot="end">{{ film.numRatings | number }}</ion-badge>
+    </ion-buttons>
+  </div>
+
+  <div class="film-info">
+    <h2>{{ film.title | truncate : 8 }}</h2>
+    <h3 *ngIf="film.title !== film.originalTitle">{{ film.originalTitle | truncate : 8 }}</h3>
+
+    <div class="year">
+      <span>{{ film.year }}</span> <span>{{ film.duration / 60 }} min.</span>
+      <img class="flag" src="assets/img/flags/{{ film.country }}.svg" alt="{{ film.country }}">
+    </div>
+
+    <div class="director">{{ film.directors.join(", ") | truncate : 6 }}</div>
+    <div class="cast">{{ film.actors.join(", ") | truncate : 15 }}</div>
+  </div>
+</div>

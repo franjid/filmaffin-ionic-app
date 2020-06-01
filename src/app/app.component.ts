@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { Router } from '@angular/router';
 import { FilmaffinLocalDbServiceProvider } from './providers/filmaffin-local-db-service';
-import { LocalDbServiceProvider } from "./providers/local-db-service";
+import { LocalDbServiceProvider } from './providers/local-db-service';
 
 @Component({
   selector: 'app-root',

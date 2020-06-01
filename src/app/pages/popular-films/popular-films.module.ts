@@ -6,14 +6,16 @@ import { PopularFilmsPage } from './popular-films';
 import { PopularFilmsPageRoutingModule } from './popular-films-routing.module';
 
 import { PipesModule } from '../../pipes/pipes.module';
-import { FilmaffinServiceProvider } from "../../providers/filmaffin-service";
+import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
+import { AppSharedComponentsModule } from '../../app-shared-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
     PopularFilmsPageRoutingModule,
-    PipesModule
+    PipesModule,
+    AppSharedComponentsModule
   ],
   declarations: [
     PopularFilmsPage,

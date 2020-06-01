@@ -14,6 +14,7 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
 
 import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+
 registerLocaleData(es);
 
 @NgModule({
@@ -22,9 +23,11 @@ registerLocaleData(es);
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot()
   ],
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+  ],
   providers: [
     {
       provide: LOCALE_ID,
@@ -36,7 +39,7 @@ registerLocaleData(es);
     LocalDbServiceProvider,
     FilmaffinLocalDbServiceProvider
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 
 export class AppModule {

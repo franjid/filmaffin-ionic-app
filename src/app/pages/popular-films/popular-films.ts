@@ -124,10 +124,6 @@ export class PopularFilmsPage {
       );
   }
 
-  loadFilm(idFilm) {
-    this.router.navigate(['films', idFilm]);
-  }
-
   toggleSearchBar() {
     this.searchBarVisible = !this.searchBarVisible;
     this.popularFilms = this.films;

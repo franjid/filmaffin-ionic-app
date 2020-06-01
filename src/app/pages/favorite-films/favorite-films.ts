@@ -72,8 +72,4 @@ export class FavoriteFilmsPage {
         console.error(error);
       });
   }
-
-  loadFilm(idFilm) {
-    this.router.navigate(['films', idFilm]);
-  }
 }
