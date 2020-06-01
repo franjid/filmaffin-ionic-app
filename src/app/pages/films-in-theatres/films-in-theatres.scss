@@ -29,7 +29,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 8px;
     box-shadow: 1px 1px 3px #ddd;
   }
 
@@ -79,7 +78,7 @@
 
 @media(max-width: 360px) {
   .film-left, .film-right {
-    height: 260px;
+    height: 265px;
   }
 }
 

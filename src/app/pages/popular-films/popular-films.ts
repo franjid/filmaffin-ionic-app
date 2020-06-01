@@ -20,6 +20,7 @@ export class PopularFilmsPage {
   resultsOffset: number;
   infiniteScrollEnabled: boolean;
   searchBarVisible: boolean;
+  searchResults: null | boolean;
 
   constructor(
     public loadingCtrl: LoadingController,
@@ -31,6 +32,7 @@ export class PopularFilmsPage {
     this.resultsOffset = 0;
     this.infiniteScrollEnabled = true;
     this.searchBarVisible = false;
+    this.searchResults = null;
   }
 
   async ngOnInit() {
@@ -83,7 +85,7 @@ export class PopularFilmsPage {
       .subscribe(
         (data) => {
           if (data) { // if we reached the end of results, we don't try to add 'null' results. It would fail
-            const dataLength = (<any>data).length;
+            const dataLength = (data as any).length;
 
             for (let i = 0, len = dataLength; i < len; ++i) {
               this.films.push(data[i]);
@@ -138,23 +140,22 @@ export class PopularFilmsPage {
   }
 
   cancelSearch() {
+    this.clearSearch();
     this.searchBarVisible = false;
-    this.films = this.popularFilms;
-    this.infiniteScrollEnabled = true;
-    this.content.scrollToTop();
-    this.searchbar.value = '';
   }
 
   clearSearch() {
     this.searchbar.value = '';
     this.films = this.popularFilms;
+    this.infiniteScrollEnabled = true;
     this.content.scrollToTop();
+    this.searchResults = null;
   }
 
   searchFilm(search) {
     this.infiniteScrollEnabled = false;
 
-    let searchString = search.target.value;
+    const searchString = search.target.value;
 
     if (searchString.length < 3) {
       return;
@@ -167,14 +168,15 @@ export class PopularFilmsPage {
 
           if (data) {
             this.films = data;
+            this.searchResults = true;
+          } else {
+            this.films = [];
+            this.searchResults = false;
           }
         },
         async (error) => {
-          const toast = await this.ToastCtrl.create({
-            message: 'No se encuentran resultados.',
-            duration: 5000
-          });
-          await toast.present();
+          this.films = [];
+          this.searchResults = false;
 
           console.error(error);
         }

@@ -106,7 +106,6 @@ export class FilmDetailPage {
   }
 
   async openBigPosterModal() {
-    console.log('open modal');
     const bigPosterModal = await this.modalCtrl.create(
       {
         component: BigPosterModalPage,

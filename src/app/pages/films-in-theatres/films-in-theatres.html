@@ -17,7 +17,7 @@
     <div *ngIf="even">
       <div class="film-left" (click)="loadFilm(films[i].idFilm)">
         <div class="poster-background">
-          <img class="poster" src="{{ films[i].posterImages.medium | filmImg}}">
+          <img class="poster" src="{{ films[i].posterImages.medium | filmImg}}" alt="{{ films[i].title }}">
 
           <ion-badge class="rating">{{ films[i].rating | number:'1.1-2':'es' }}</ion-badge>
           <ion-buttons class="num-ratings" *ngIf="films[i].numRatings !== 0">

@@ -3,15 +3,15 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title *ngIf="!searchBarVisible">Películas populares</ion-title>
+    <ion-title *ngIf="!searchBarVisible">Películas</ion-title>
     <ion-searchbar
-        *ngIf="searchBarVisible"
-        (ionInput)="searchFilm($event)"
-        (ionCancel)="cancelSearch()"
-        (ionClear)="clearSearch()"
-        showCancelButton="always"
-        debounce="100"
-        placeholder="Buscar por título"
+      *ngIf="searchBarVisible"
+      (ionInput)="searchFilm($event)"
+      (ionCancel)="cancelSearch()"
+      (ionClear)="clearSearch()"
+      showCancelButton="always"
+      debounce="100"
+      placeholder="Buscar por título"
     >
     </ion-searchbar>
 
@@ -24,47 +24,36 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let film of films" (click)="loadFilm(film.idFilm)">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="4">
-          <img class="poster" src="{{ film.posterImages.small | filmImg}}" alt="{{film.title}}">
-          <!--          <img class="poster" src="assets/img/logan-528968427-mmed.jpg">-->
-        </ion-col>
-        <ion-col size="8">
-          <h1 class="title">{{ film.title }}</h1>
-          <div class="numbers ion-float-left">
-            <ion-badge class="rating ion-float-left">{{ film.rating | number }}</ion-badge>
+  <h1 *ngIf="searchResults !== null && !searchResults">No se han encontrado coincidencias</h1>
 
-            <div class="numVotes ion-float-left">{{ film.numRatings | number }}</div>
-            <div class="peopleIcon ion-float-left">
-              <ion-icon name="people"></ion-icon>
-            </div>
+  <div class="film" *ngFor="let film of films" (click)="loadFilm(film.idFilm)">
+    <div class="poster-background">
+      <img class="poster" src="{{ film.posterImages.small | filmImg}}" alt="{{ film.title }}">
 
-            <ion-badge class="duration ion-float-right">{{ film.duration / 60 }} min.</ion-badge>
-            <ion-badge class="year ion-float-right">{{ film.year }}</ion-badge>
-          </div>
-          <div class="info1">
-            <ion-row>
-              <ion-col size="2">
-                <img class="flag" src="assets/img/flags/{{ film.country }}.svg">
-              </ion-col>
-              <ion-col size="10">
-                <span class="director">{{ film.directors.join(", ") | truncate : 8 }}</span>
-              </ion-col>
-            </ion-row>
-          </div>
-          <div class="cast">
-            {{ film.actors.join(", ") | truncate : 20 }}
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+      <ion-badge class="rating">{{ film.rating | number:'1.1-2':'es' }}</ion-badge>
+      <ion-buttons class="num-ratings" *ngIf="film.numRatings !== 0">
+        <ion-icon slot="start" name="people"></ion-icon>
+        <ion-badge slot="end">{{ film.numRatings | number }}</ion-badge>
+      </ion-buttons>
+    </div>
 
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <div class="film-info">
+      <h2>{{ film.title | truncate : 8 }}</h2>
+      <h3 *ngIf="film.title !== film.originalTitle">{{ film.originalTitle | truncate : 8 }}</h3>
+
+      <div class="year">
+        <span>{{ film.year }}</span> <span>{{ film.duration / 60 }} min.</span>
+        <img class="flag" src="assets/img/flags/{{ film.country }}.svg" alt="{{ film.country }}">
+      </div>
+
+      <div class="director">{{ film.directors.join(", ") | truncate : 6 }}</div>
+      <div class="cast">{{ film.actors.join(", ") | truncate : 15 }}</div>
+    </div>
+  </div>
+
+  <ion-infinite-scroll *ngIf="infiniteScrollEnabled" (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content
-        loadingSpinner="bubbles">
+      loadingSpinner="bubbles">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
