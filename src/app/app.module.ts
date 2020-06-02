@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { FilmaffinLocalDbServiceProvider } from './providers/filmaffin-local-db-service';
 import { LocalDbServiceProvider } from './providers/local-db-service';
 import { SQLite } from '@ionic-native/sqlite/ngx';
+import { IonicStorageModule } from '@ionic/storage';
 
 import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
@@ -23,7 +24,8 @@ registerLocaleData(es);
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
   ],
   declarations: [
     AppComponent,
@@ -37,7 +39,7 @@ registerLocaleData(es);
     StatusBar,
     SQLite,
     LocalDbServiceProvider,
-    FilmaffinLocalDbServiceProvider
+    FilmaffinLocalDbServiceProvider,
   ],
   bootstrap: [AppComponent],
 })

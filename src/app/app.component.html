@@ -1,4 +1,4 @@
-<ion-app [class.dark-theme]="dark">
+<ion-app [class.dark-theme]="darkMode">
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content">
       <ion-header>
@@ -11,7 +11,7 @@
         <ion-list lines="none">
           <ion-menu-toggle autoHide="false">
             <ion-item routerLink="/films/popular" routerLinkActive="selected" routerDirection="root" detail="false">
-              <ion-icon slot="start" name="film-outline"></ion-icon>
+              <ion-icon slot="start" name="film"></ion-icon>
               <ion-label>
                 Películas
               </ion-label>
@@ -25,12 +25,26 @@
             </ion-item>
 
             <ion-item routerLink="/films/favorite" routerLinkActive="selected" routerDirection="root" detail="false">
-              <ion-icon slot="start" name="star-outline"></ion-icon>
+              <ion-icon slot="start" name="star"></ion-icon>
               <ion-label>
                 Favoritas/Ver más tarde
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+        </ion-list>
+
+        <ion-list lines="none">
+          <ion-list-header>
+            Cuenta
+          </ion-list-header>
+
+          <ion-item>
+            <ion-icon slot="start" [attr.name]="(!!darkMode) ? 'moon' : 'moon-outline'"></ion-icon>
+            <ion-label>
+              Modo oscuro
+            </ion-label>
+            <ion-toggle [(ngModel)]="darkMode" (ionChange)="storeDarkMode()"></ion-toggle>
+          </ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>

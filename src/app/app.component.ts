@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { FilmaffinLocalDbServiceProvider } from './providers/filmaffin-local-db-service';
 import { LocalDbServiceProvider } from './providers/local-db-service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import { LocalDbServiceProvider } from './providers/local-db-service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  dark = false;
+  darkMode: boolean;
 
   constructor(
     private menu: MenuController,
@@ -23,8 +24,13 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private filmaffinLocalDb: FilmaffinLocalDbServiceProvider,
-    private localDb: LocalDbServiceProvider
+    private localDb: LocalDbServiceProvider,
+    private storage: Storage
   ) {
+    this.storage.get('dark_mode').then((value) => {
+      this.darkMode = !!value;
+    });
+
     this.initializeApp();
   }
 
@@ -37,5 +43,9 @@ export class AppComponent {
         });
       });
     });
+  }
+
+  storeDarkMode() {
+    this.storage.set('dark_mode', this.darkMode);
   }
 }
