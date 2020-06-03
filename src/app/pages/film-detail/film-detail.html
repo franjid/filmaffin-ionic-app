@@ -49,27 +49,27 @@
     </div>
 
     <div id="people">
-      <div class="people-element">
+      <div *ngIf="film.directors.length && film.directors[0] !== ''" class="people-element">
         <span class="title">Dirección</span>
         <span class="content">{{ film.directors.join(", ") }}</span>
       </div>
 
-      <div class="people-element">
+      <div *ngIf="film.screenplayers.length && film.screenplayers[0] !== ''" class="people-element">
         <span class="title">Guión</span>
         <span class="content">{{ film.screenplayers.join(", ") }}</span>
       </div>
 
-      <div class="people-element">
+      <div *ngIf="film.actors.length && film.actors[0] !== ''" class="people-element">
         <span class="title">Reparto</span>
         <span class="content">{{ film.actors.join(", ") }}</span>
       </div>
 
-      <div class="people-element">
+      <div *ngIf="film.musicians.length && film.musicians[0] !== ''" class="people-element">
         <span class="title">Música</span>
         <span class="content">{{ film.musicians.join(", ") }}</span>
       </div>
 
-      <div class="people-element">
+      <div *ngIf="film.cinematographers.length && film.cinematographers[0] !== ''" class="people-element">
         <span class="title">Fotografía</span>
         <span class="content">{{ film.cinematographers.join(", ") }}</span>
       </div>
