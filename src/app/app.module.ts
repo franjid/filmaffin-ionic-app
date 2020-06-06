@@ -12,6 +12,7 @@ import { FilmaffinLocalDbServiceProvider } from './providers/filmaffin-local-db-
 import { LocalDbServiceProvider } from './providers/local-db-service';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
@@ -38,6 +39,7 @@ registerLocaleData(es);
     SplashScreen,
     StatusBar,
     SQLite,
+    FCM,
     LocalDbServiceProvider,
     FilmaffinLocalDbServiceProvider,
   ],

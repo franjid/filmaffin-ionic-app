@@ -21,6 +21,7 @@
     "@angular/router": "~9.1.6",
     "@capacitor/core": "2.1.0",
     "@ionic-native/core": "^5.0.7",
+    "@ionic-native/fcm": "^5.26.0",
     "@ionic-native/social-sharing": "^5.26.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/sqlite": "^5.26.0",
@@ -29,6 +30,9 @@
     "@ionic/storage": "^2.2.0",
     "cordova-android": "^8.1.0",
     "cordova-browser": "^6.0.0",
+    "cordova-plugin-androidx": "^2.0.0",
+    "cordova-plugin-androidx-adapter": "^1.1.1",
+    "cordova-plugin-fcm-with-dependecy-updated": "^6.4.1",
     "cordova-plugin-x-socialsharing": "^5.6.8",
     "cordova-sqlite-storage": "5.0.0",
     "es6-promise-plugin": "^4.2.2",
@@ -80,7 +84,16 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "cordova-plugin-fcm-with-dependecy-updated": {
+        "FCM_VERSION": "19.0.0",
+        "GRADLE_TOOLS_VERSION": "3.5.3",
+        "GOOGLE_SERVICES_VERSION": "4.3.3",
+        "SUPPORT_LIBRARY_VERSION": "28.0.0",
+        "ANDROID_DEFAULT_NOTIFICATION_ICON": "@mipmap/ic_launcher"
+      },
+      "cordova-plugin-androidx": {},
+      "cordova-plugin-androidx-adapter": {}
     },
     "platforms": [
       "browser",
