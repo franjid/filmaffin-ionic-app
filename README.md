@@ -14,7 +14,7 @@ npm install
 
 * Run app in device:
     ```
-    cordova platform add android
+    ionic cordova platform add android
     ```
 
     *Important*
