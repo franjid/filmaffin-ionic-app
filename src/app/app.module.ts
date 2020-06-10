@@ -26,7 +26,7 @@ registerLocaleData(es);
     HttpClientModule,
     FormsModule,
     IonicModule.forRoot(),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot()
   ],
   declarations: [
     AppComponent,

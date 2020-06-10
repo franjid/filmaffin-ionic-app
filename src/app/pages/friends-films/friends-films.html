@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Votaciones de amigos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="syncing" *ngIf="userLoggedIn && !friendsSynced">
+    <p>Estamos sincronizando tus amigos y sus últimas votaciones.</p>
+    <p>Vuelve aquí dentro de un rato para ver las últimas películas votadas por tus amigos.</p>
+    <p>(Intentaremos enviarte una notificación cuando esté todo listo)</p>
+  </div>
+</ion-content>

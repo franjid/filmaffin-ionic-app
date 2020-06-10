@@ -30,14 +30,20 @@
                 Favoritas/Ver más tarde
               </ion-label>
             </ion-item>
+
+            <div routerLinkActive="selected">
+              <ion-item routerLink="/films/friends" detail="false"
+                        [class.selected]="router.isActive('/films/friends') || router.isActive('/login')">
+                <ion-icon slot="start" name="people-circle-outline"></ion-icon>
+                <ion-label>
+                  Votaciones de amigos
+                </ion-label>
+              </ion-item>
+            </div>
           </ion-menu-toggle>
         </ion-list>
 
         <ion-list lines="none">
-          <ion-list-header>
-            Cuenta
-          </ion-list-header>
-
           <ion-item>
             <ion-icon slot="start" [attr.name]="(!!darkMode) ? 'moon' : 'moon-outline'"></ion-icon>
             <ion-label>

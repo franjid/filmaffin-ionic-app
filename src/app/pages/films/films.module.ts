@@ -4,8 +4,9 @@ import { FilmsPage } from './films';
 import { FilmsPageRoutingModule } from './films-routing.module';
 import { PopularFilmsModule } from "../popular-films/popular-films.module";
 import { FilmsInTheatresModule } from "../films-in-theatres/films-in-theatres.module";
-import { FilmDetailModule } from "../film-detail/film-detail.module";
 import { FavoriteFilmsModule } from "../favorite-films/favorite-films.module";
+import { FriendsFilmsModule } from "../friends-films/friends-films.module";
+import { FilmDetailModule } from "../film-detail/film-detail.module";
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { FavoriteFilmsModule } from "../favorite-films/favorite-films.module";
     PopularFilmsModule,
     FilmsInTheatresModule,
     FavoriteFilmsModule,
+    FriendsFilmsModule,
     FilmDetailModule,
   ],
   declarations: [

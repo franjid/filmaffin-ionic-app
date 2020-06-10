@@ -4,6 +4,8 @@ import { PopularFilmsPage } from "../popular-films/popular-films";
 import { FilmsInTheatresPage } from "../films-in-theatres/films-in-theatres";
 import { FilmDetailPage } from "../film-detail/film-detail";
 import { FavoriteFilmsPage } from "../favorite-films/favorite-films";
+import { FriendsFilmsPage } from "../friends-films/friends-films";
+import { AuthGuardService } from "../../services/auth-guard.service";
 
 const routes: Routes = [
   {
@@ -17,6 +19,11 @@ const routes: Routes = [
   {
     path: 'favorite',
     component: FavoriteFilmsPage,
+  },
+  {
+    path: 'friends',
+    component: FriendsFilmsPage,
+    canActivate: [AuthGuardService]
   },
   { // Must be the last one as otherwise a path like /films/theatres will go into this route
     path: ':filmId',

@@ -21,7 +21,7 @@ export class AppComponent {
   constructor(
     private menu: MenuController,
     private platform: Platform,
-    private router: Router,
+    public router: Router,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private filmaffinLocalDb: FilmaffinLocalDbServiceProvider,
@@ -38,14 +38,14 @@ export class AppComponent {
   }
 
   initializeApp() {
+    // this.storage.remove('isLoggedIn');
+
     this.platform.ready().then(() => {
       this.fcm.getToken().then(token => {
         console.log(token);
       });
 
       this.fcm.onNotification().subscribe(data => {
-        console.log(data);
-
         if (data.wasTapped) {
           console.log('Received in background');
 

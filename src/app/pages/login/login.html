@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Votaciones de amigos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="text">
+    <p>Lista las últimas películas votadas por tus amigos y recibe notificaciones cuando voten alguna película
+      nueva.</p>
+
+    <p>Necesitamos tu usuario y contraseña en Filmaffinity para poder importar tus amigos. <strong>Los datos NO se
+      guardarán y sólo serán
+      utilizados para sincronizar tu lista de amigos.</strong></p>
+  </div>
+
+  <form #loginForm="ngForm" novalidate>
+    <ion-item>
+      <ion-label position="floating">Email o Nombre de usuario</ion-label>
+      <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false"
+                 autocapitalize="off" required [disabled]="isTryingToLogin">
+      </ion-input>
+    </ion-item>
+    <ion-text [hidden]="username.valid || !formSubmitted || isTryingToLogin" color="danger" class="required-text">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <p class="ion-padding-start">Este campo es obligatorio</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel"
+                 required [disabled]="isTryingToLogin"></ion-input>
+    </ion-item>
+    <ion-text [hidden]="password.valid || !formSubmitted || isTryingToLogin" class="ion-padding-start" color="danger" class="required-text">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <p>Este campo es obligatorio</p>
+    </ion-text>
+
+    <ion-button expand="block" fill="solid" type="submit" (click)="onLogin(loginForm)" [disabled]="isTryingToLogin">
+      <span *ngIf="!isTryingToLogin">Sincronizar</span>
+      <ion-spinner *ngIf="isTryingToLogin"></ion-spinner>
+    </ion-button>
+  </form>
+
+  <div id="error-login">
+    <ion-text [hidden]="!errorLogin" class="ion-padding-start" color="danger" class="required-text">
+      <p>Nombre de usuario o contraseña incorrecto (recuerda distinguir entre mayúsculas y minúsculas)</p>
+    </ion-text>
+  </div>
+</ion-content>

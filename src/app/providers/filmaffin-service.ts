@@ -5,7 +5,7 @@ import * as Constants from '../constants';
 @Injectable()
 export class FilmaffinServiceProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   getPopularFilms(numResults: number, offset: number) {
@@ -25,5 +25,9 @@ export class FilmaffinServiceProvider {
 
   searchFilm(title: string) {
     return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films?title=' + title);
+  }
+
+  loginUser(username: string, password: string) {
+    return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/users/login/filmaffinity?user=' + username + '&password=' + password);
   }
 }
