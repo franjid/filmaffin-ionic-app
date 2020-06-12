@@ -4,7 +4,6 @@ import * as Constants from '../../constants';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { FilmImgPipe } from '../../pipes/film-img';
 import { BigPosterModalPage } from '../big-poster-modal/big-poster-modal';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service';
@@ -23,14 +22,13 @@ export class FilmDetailPage {
 
   constructor(
     private actRoute: ActivatedRoute,
-    public modalCtrl: ModalController,
+    private modalCtrl: ModalController,
     private location: Location,
     private ToastCtrl: ToastController,
     private socialSharing: SocialSharing,
-    private filmImgPipe: FilmImgPipe,
-    public loadingCtrl: LoadingController,
-    public FilmaffinService: FilmaffinServiceProvider,
-    public filmaffinLocalDb: FilmaffinLocalDbServiceProvider
+    private loadingCtrl: LoadingController,
+    private FilmaffinService: FilmaffinServiceProvider,
+    private filmaffinLocalDb: FilmaffinLocalDbServiceProvider
   ) {
     this.defaultHref = '/films/popular';
 

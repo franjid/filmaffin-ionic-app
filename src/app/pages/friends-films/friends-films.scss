@@ -2,6 +2,26 @@ ion-content {
   --background: var(--ion-color-light);
 }
 
-#syncing {
+#friends-syncing {
   padding: 5px 20px 0 20px;
+}
+
+#friends-synced {
+  .rating-header {
+    float: left;
+    width: 100%;
+    height: 30px;
+    padding: 7px 10px 0 10px;
+    font-size: 85%;
+    background-color: rgba(var(--ion-color-primary-rgb), 0.10);
+  }
+  .rating-date {
+    font-weight: 500;
+  }
+
+  .rating-user {
+    float: right;
+    font-weight: bold;
+    color: var(--ion-color-yellow-shade);
+  }
 }

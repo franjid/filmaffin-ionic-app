@@ -23,10 +23,10 @@ export class PopularFilmsPage {
   searchResults: null | boolean;
 
   constructor(
-    public loadingCtrl: LoadingController,
-    public FilmaffinService: FilmaffinServiceProvider,
-    private ToastCtrl: ToastController,
-    public router: Router,
+    private loadingCtrl: LoadingController,
+    private filmaffinService: FilmaffinServiceProvider,
+    private toastCtrl: ToastController,
+    private router: Router,
   ) {
     this.numResults = Constants.NUM_RESULTS_POPULAR_FILMS;
     this.resultsOffset = 0;
@@ -45,7 +45,7 @@ export class PopularFilmsPage {
     });
     await loading.present();
 
-    this.FilmaffinService.getPopularFilms(this.numResults, this.resultsOffset)
+    this.filmaffinService.getPopularFilms(this.numResults, this.resultsOffset)
       .subscribe(
         (data) => {
           loading.dismiss();
@@ -55,7 +55,7 @@ export class PopularFilmsPage {
         async (error) => {
           await loading.dismiss();
 
-          const toast = await this.ToastCtrl.create({
+          const toast = await this.toastCtrl.create({
             message: 'No se pueden cargar las películas.' + ' \n' + 'Revisa tu conexión a internet.',
             buttons: [
               {
@@ -81,7 +81,7 @@ export class PopularFilmsPage {
       return;
     }
 
-    this.FilmaffinService.getPopularFilms(this.numResults, this.resultsOffset)
+    this.filmaffinService.getPopularFilms(this.numResults, this.resultsOffset)
       .subscribe(
         (data) => {
           if (data) { // if we reached the end of results, we don't try to add 'null' results. It would fail
@@ -104,7 +104,7 @@ export class PopularFilmsPage {
           console.log(infiniteScroll);
           infiniteScroll.target.complete();
 
-          const toast = await this.ToastCtrl.create({
+          const toast = await this.toastCtrl.create({
             message: 'No se pueden cargar las películas.' + ' \n' + 'Revisa tu conexión a internet.',
             buttons: [
               {
@@ -157,7 +157,7 @@ export class PopularFilmsPage {
       return;
     }
 
-    this.FilmaffinService.searchFilm(searchString)
+    this.filmaffinService.searchFilm(searchString)
       .subscribe(
         (data) => {
           this.content.scrollToTop();

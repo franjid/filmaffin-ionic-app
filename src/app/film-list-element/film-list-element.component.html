@@ -10,8 +10,13 @@
   </div>
 
   <div class="film-info">
-    <h2>{{ film.title | truncate : 8 }}</h2>
-    <h3 *ngIf="film.title !== film.originalTitle">{{ film.originalTitle | truncate : 8 }}</h3>
+    <div class="film-header">
+      <div class="titles" [style]="userRating !== undefined ? 'width: 85%' : ''">
+        <h2>{{ film.title | truncate : 8 }}</h2>
+<!--        <h3 *ngIf="film.title !== film.originalTitle">{{ film.originalTitle | truncate : 8 }}</h3>-->
+      </div>
+      <ion-badge *ngIf="userRating !== undefined" class="friend-rating">{{ userRating }}</ion-badge>
+    </div>
 
     <div class="year">
       <span>{{ film.year }}</span> <span>{{ film.duration / 60 }} min.</span>

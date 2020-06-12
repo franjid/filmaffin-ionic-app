@@ -16,11 +16,11 @@ export class FilmsInTheatresPage {
   sortBy: string;
 
   constructor(
-    public loadingCtrl: LoadingController,
+    private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    public FilmaffinService: FilmaffinServiceProvider,
-    private ToastCtrl: ToastController,
-    public router: Router
+    private filmaffinService: FilmaffinServiceProvider,
+    private toastCtrl: ToastController,
+    private router: Router
   ) {
     this.sortBy = 'rating';
   }
@@ -35,7 +35,7 @@ export class FilmsInTheatresPage {
     });
     await loading.present();
 
-    this.FilmaffinService.getFilmsInTheatres(sortBy)
+    this.filmaffinService.getFilmsInTheatres(sortBy)
       .subscribe(
         (data) => {
           loading.dismiss();
@@ -46,7 +46,7 @@ export class FilmsInTheatresPage {
         async (error) => {
           loading.dismiss();
 
-          const toast = await this.ToastCtrl.create({
+          const toast = await this.toastCtrl.create({
             message: 'No se pueden cargar las películas.' + ' \n' + 'Revisa tu conexión a internet.',
             buttons: [
               {

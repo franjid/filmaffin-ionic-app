@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class FilmListElementComponent implements OnInit {
   @Input() film: [];
+  @Input() userRating: number;
 
   constructor(
     public router: Router,

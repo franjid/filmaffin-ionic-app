@@ -64,22 +64,37 @@ h1 {
     float: right;
     width: 63%;
 
-    h2 {
-      margin: 0;
-      font-size: 125%;
-      font-weight: bold;
-      color: var(--ion-color-dark);
-    }
+    .film-header {
+      .titles {
+        float: left;
+        margin-bottom: 8px;
 
-    h3 {
-      margin: 3px 0 0 0;
-      font-size: 90%;
-      font-weight: normal;
-      color: var(--ion-color-medium);
+        h2 {
+          margin: 0;
+          font-size: 125%;
+          font-weight: bold;
+          color: var(--ion-color-dark);
+        }
+
+        h3 {
+          margin: 3px 0 0 0;
+          font-size: 90%;
+          font-weight: normal;
+          color: var(--ion-color-medium);
+        }
+      }
+
+      .friend-rating {
+        float: right;
+        margin-top: 2px;
+        padding: 3px 7px;
+        font-size: 110%;
+        background-color: #820000;
+      }
     }
 
     .year {
-      margin: 10px 0 0 0;
+      clear: both;
       color: var(--ion-color-medium);
       font-size: 80%;
 
@@ -89,13 +104,14 @@ h1 {
 
       .flag {
         float: right;
-        width: 7%;
+        width: 6%;
+        margin: 2px 4px 0 0;
       }
     }
 
     .director {
       font-size: 90%;
-      margin: 8px 0 10px 0;
+      margin: 12px 0 10px 0;
       color: var(--ion-color-dark-tint);
     }
 

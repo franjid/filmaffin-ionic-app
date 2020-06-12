@@ -121,12 +121,9 @@
   text-align: center;
   padding: 0 5px 5px 5px;
 
-  ion-badge {
-    margin: 4px;
-    padding: 5px;
-    font-size: 80%;
-    font-weight: normal;
-    background-color: var(--ion-color-primary-tint)
+  ion-chip {
+    font-size: 75%;
+    font-weight: bold;
   }
 }
 

@@ -14,11 +14,11 @@ export class FavoriteFilmsPage {
   films: any;
 
   constructor(
-    public router: Router,
-    public loadingCtrl: LoadingController,
-    private ToastCtrl: ToastController,
-    public filmaffinService: FilmaffinServiceProvider,
-    public filmaffinLocalDb: FilmaffinLocalDbServiceProvider,
+    private router: Router,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController,
+    private filmaffinService: FilmaffinServiceProvider,
+    private filmaffinLocalDb: FilmaffinLocalDbServiceProvider,
   ) {
   }
 
@@ -47,7 +47,7 @@ export class FavoriteFilmsPage {
               this.films = data;
             },
             async (error) => {
-              const toast = await this.ToastCtrl.create({
+              const toast = await this.toastCtrl.create({
                 message: 'No se pueden cargar las películas.' + ' \n' + 'Revisa tu conexión a internet.',
                 duration: 5000,
                 buttons: [

@@ -8,9 +8,23 @@
 </ion-header>
 
 <ion-content>
-  <div id="syncing" *ngIf="userLoggedIn && !friendsSynced">
+  <div id="friends-syncing" *ngIf="userLoggedIn && !friendsSynced">
     <p>Estamos sincronizando tus amigos y sus últimas votaciones.</p>
     <p>Vuelve aquí dentro de un rato para ver las últimas películas votadas por tus amigos.</p>
     <p>(Intentaremos enviarte una notificación cuando esté todo listo)</p>
+  </div>
+
+  <div id="friends-synced" *ngIf="userLoggedIn && friendsSynced">
+    <div *ngFor="let groupedByDate of filmsGroupedByDateUser">
+<!--      <span class="rating-date">{{ groupedByDate.dateRated * 1000 | date: 'longDate' }}</span>-->
+      <div *ngFor="let groupedByUser of groupedByDate.users">
+        <div class="rating-header">
+          <span class="rating-date">{{ groupedByDate.dateRated * 1000 | date: 'longDate' }}</span>
+          <span class="rating-user">{{ groupedByUser.username }}</span>
+        </div>
+        <film-list-element *ngFor="let dataFilm of groupedByUser" [film]="dataFilm.film"
+                           [userRating]="dataFilm.userRating"></film-list-element>
+      </div>
+    </div>
   </div>
 </ion-content>
