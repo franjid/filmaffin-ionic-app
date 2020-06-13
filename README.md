@@ -25,3 +25,9 @@ npm install
     ```
     ionic cordova run android --device 
     ```
+
+### Notifications icon note
+
+In case there is a weird behaviour with the notifications app (not being the one it should be), make sure to replace `ic_launcher` strings by `fcm_push_icon` in `platforms/android/android.json`.
+
+Also, copy `resources/notifications_icons` to `platforms/android/app/src/main/res`.

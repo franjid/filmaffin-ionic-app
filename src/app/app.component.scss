@@ -1,3 +1,11 @@
+ion-title {
+  font-size: 150%;
+
+  #title-film {
+    color: var(--ion-color-yellow);
+  }
+}
+
 ion-menu ion-content {
   --padding-top: 20px;
   --padding-bottom: 20px;
