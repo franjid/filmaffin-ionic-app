@@ -7,6 +7,11 @@ import { UserLogin } from '../../interfaces/user-login';
 import { FilmaffinServiceProvider } from "../../providers/filmaffin-service";
 import * as Constants from '../../constants';
 
+interface LoginResponse {
+  userId: number,
+  userName: string
+}
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -27,8 +32,8 @@ export class LoginPage {
   }
 
   ionViewWillEnter() {
-    this.storage.get(Constants.Storage.IS_USER_LOGGED_IN).then((value) => {
-      if (value === true) {
+    this.storage.get(Constants.Storage.ID_USER_LOGGED_IN).then((value) => {
+      if (value) {
         console.log('User logged in');
         this.router.navigate(['films/friends']);
       }
@@ -41,29 +46,24 @@ export class LoginPage {
     if (form.valid) {
       this.errorLogin = false;
       this.isTryingToLogin = true;
-      console.log(this.login.username);
-      console.log(this.login.password);
 
-      this.filmaffinService.loginUser(this.login.username, this.login.password)
-      // this.filmaffinService.getPopularFilms(1, 0)
-        .subscribe(
-          (data) => {
-            console.info('SUCCESS!');
-            console.log(data);
+      this.storage.get(Constants.Storage.APP_NOTIFICATIONS_TOKEN).then((appNotificationsToken) => {
+        this.filmaffinService.loginUser(this.login.username, this.login.password, appNotificationsToken)
+          .subscribe(
+            (data: LoginResponse) => {
+              this.storage.set(Constants.Storage.ID_USER_LOGGED_IN, data.userId).then(() => {
+                this.router.navigate(['films/friends'], {skipLocationChange: true});
+              })
+            },
+            (error) => {
+              console.error(error);
 
-            this.storage.set(Constants.Storage.IS_USER_LOGGED_IN, true).then(() => {
-              this.router.navigate(['films/friends'], {skipLocationChange: true});
-            })
-          },
-          (error) => {
-            console.info('ERROR!');
-            console.error(error);
-
-            this.formSubmitted = false;
-            this.isTryingToLogin = false;
-            this.errorLogin = true;
-          }
-        );
+              this.formSubmitted = false;
+              this.isTryingToLogin = false;
+              this.errorLogin = true;
+            }
+          );
+      });
     }
   }
 }

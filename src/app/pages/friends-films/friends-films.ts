@@ -24,37 +24,42 @@ export class FriendsFilmsPage {
   }
 
   ngOnInit() {
-    this.storage.get(Constants.Storage.IS_USER_LOGGED_IN).then((value) => {
-      if (value === true) {
+    this.storage.get(Constants.Storage.ID_USER_LOGGED_IN).then((idUser) => {
+      if (idUser) {
         console.log('User logged in');
         this.userLoggedIn = true;
-        // At this point, user is logged. Then we can load friends last ratings
-        // console.log('Load friends last ratings');
-      }
-    });
 
-    this.storage.get(Constants.Storage.FRIENDS_SYNCED).then((value) => {
-      if (value === true) {
-        console.log('Friends synced');
-        console.log('Load friends last ratings');
+        this.storage.get(Constants.Storage.FRIENDS_SYNCED).then((value) => {
+          if (value === true) {
+            console.log('Friends synced');
+            console.log('Load friends last ratings');
 
-        this.friendsSynced = true;
+            this.friendsSynced = true;
 
-        this.loadUserFriendsLastRatedFilms(userId);
+            this.loadUserFriendsLastRatedFilms(idUser);
+          } else {
+            /**
+             * Maybe we could check calling friends films, so if we get some results it means
+             * the notification failed, but we still could see the list
+             *
+             * Important: In that case, we must set FRIENDS_SYNCED key to true
+             */
+          }
+        });
       }
     });
   }
 
-  async loadUserFriendsLastRatedFilms(userId: number) {
+  async loadUserFriendsLastRatedFilms(idUser: number) {
     const loading = await this.loadingCtrl.create({
       message: 'Cargando...'
     });
     await loading.present();
 
-    this.filmaffinService.getUserFriendsLastRatedFilms(userId, 30, 0)
+    this.filmaffinService.getUserFriendsLastRatedFilms(idUser, 30, 0)
       .subscribe(
         (data: Array<any>) => {
-          this.filmsGroupedByDateUser = this.getFilmsGroupedByDateUserOptimized(data);
+          this.filmsGroupedByDateUser = this.getFriendsFilmsGroupedByDateUser(data);
           loading.dismiss();
         },
         async (error) => {
@@ -62,13 +67,14 @@ export class FriendsFilmsPage {
 
           const toast = await this.toastCtrl.create({
             message: 'No se pueden cargar las películas.' + ' \n' + 'Revisa tu conexión a internet.',
+            duration: 5000,
             buttons: [
               {
                 text: 'Ok',
                 role: 'cancel',
                 handler: () => {
                   toast.dismiss();
-                  this.loadUserFriendsLastRatedFilms(userId);
+                  this.loadUserFriendsLastRatedFilms(idUser);
                 }
               }
             ]
@@ -80,10 +86,9 @@ export class FriendsFilmsPage {
       );
   }
 
-  private getFilmsGroupedByDateUserOptimized(data) {
+  private getFriendsFilmsGroupedByDateUser(data) {
     let filmsGroupedByDate = [];
     let filmsGroupedByUser = [];
-    let filmsGroupedByDateUserOptimized = [];
 
     let j = -1;
     let previousDateRated = 0;
@@ -103,36 +108,30 @@ export class FriendsFilmsPage {
       previousDateRated = filmData.dateRated;
     });
 
-
     filmsGroupedByDate.forEach(function (filmsFormattedData, i) {
       filmsGroupedByUser[i] = {
         dateRated: filmsFormattedData.dateRated,
         users: []
       };
 
-      (filmsFormattedData.data).forEach(function (filmsFormattedDataData, j, array) {
-        if (!filmsGroupedByUser[i].users[filmsFormattedDataData.user.userId]) {
-          filmsGroupedByUser[i].users[filmsFormattedDataData.user.userId] = [];
-          filmsGroupedByUser[i].users[filmsFormattedDataData.user.userId].username = filmsFormattedDataData.user.userName;
+      let userPositionMap = {};
+      let userPosition = 0;
+
+      (filmsFormattedData.data).forEach(function (filmsFormattedDataData) {
+        if (userPositionMap[filmsFormattedDataData.user.userName] === undefined) {
+          userPositionMap[filmsFormattedDataData.user.userName] = userPosition;
+          filmsGroupedByUser[i].users[userPosition] = [];
+
+          userPosition++;
         }
 
-        filmsGroupedByUser[i].users[filmsFormattedDataData.user.userId].push(filmsFormattedDataData);
+        let position = userPositionMap[filmsFormattedDataData.user.userName];
+
+        filmsGroupedByUser[i].users[position].username = filmsFormattedDataData.user.userName;
+        filmsGroupedByUser[i].users[position].push(filmsFormattedDataData);
       });
     });
 
-    filmsGroupedByUser.forEach(function (groupedByDate) {
-      let users = [];
-
-      (groupedByDate.users).forEach(function (groupedByUser) {
-        users.push(groupedByUser);
-      });
-
-      filmsGroupedByDateUserOptimized.push({
-        dateRated: groupedByDate.dateRated,
-        users: users
-      });
-    });
-
-    return filmsGroupedByDateUserOptimized;
+    return filmsGroupedByUser;
   }
 }

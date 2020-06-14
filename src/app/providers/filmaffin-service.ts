@@ -34,9 +34,10 @@ export class FilmaffinServiceProvider {
     );
   }
 
-  loginUser(username: string, password: string) {
+  loginUser(username: string, password: string, appNotificationsToken: string|null) {
     return this.http.get(
-      Constants.FILMAFFIN_API_ENDPOINT + '/users/login/filmaffinity?user=' + username + '&password=' + password
+      Constants.FILMAFFIN_API_ENDPOINT + '/users/login/filmaffinity' +
+        '?user=' + username + '&password=' + password + '&appNotificationsToken=' + appNotificationsToken
     );
   }
 }

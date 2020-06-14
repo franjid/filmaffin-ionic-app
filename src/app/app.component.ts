@@ -3,12 +3,12 @@ import { Component } from '@angular/core';
 import { AlertController, MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
 import { Router } from '@angular/router';
 import { FilmaffinLocalDbServiceProvider } from './providers/filmaffin-local-db-service';
 import { LocalDbServiceProvider } from './providers/local-db-service';
 import { Storage } from '@ionic/storage';
 import { FCM } from '@ionic-native/fcm/ngx';
+import * as Constants from './constants';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +30,7 @@ export class AppComponent {
     private fcm: FCM,
     private alertCtrl: AlertController
   ) {
-    this.storage.get('dark_mode').then((value) => {
+    this.storage.get(Constants.Storage.DARK_MODE).then((value) => {
       this.darkMode = !!value;
     });
 
@@ -38,30 +38,29 @@ export class AppComponent {
   }
 
   initializeApp() {
-    // this.storage.remove('isLoggedIn');
+    // this.storage.remove(Constants.Storage.ID_USER_LOGGED_IN);
+    // this.storage.remove(Constants.Storage.FRIENDS_SYNCED);
 
     this.platform.ready().then(() => {
-      this.fcm.getToken().then(token => {
-        console.log(token);
-      });
+      if (this.platform.is('cordova')) {
+        this.fcm.getToken().then(token => {
+          this.storage.set(Constants.Storage.APP_NOTIFICATIONS_TOKEN, token);
+        });
 
-      this.fcm.onNotification().subscribe(data => {
-        if (data.wasTapped) {
-          console.log('Received in background');
-
-          switch (data.action) {
-            case 'friends_sync_finished':
-              this.router.navigate(['films/theatres']);
-              break;
-          }
-        } else {
-          console.log('Received in foreground');
-
+        this.fcm.onNotification().subscribe(data => {
           if (data.action === 'friends_sync_finished') {
-            this.showFriendsSyncCompleted();
+            this.storage.set(Constants.Storage.FRIENDS_SYNCED, true).then(() => {
+              if (data.wasTapped) {
+                console.log('Received in background');
+                this.router.navigate(['films/friends']);
+              } else {
+                console.log('Received in foreground');
+                this.showFriendsSyncCompleted();
+              }
+            })
           }
-        }
-      });
+        });
+      }
 
       this.localDb.ready.then(() => {
         this.filmaffinLocalDb.createFavoriteFilmTable().then(() => {
@@ -74,14 +73,14 @@ export class AppComponent {
 
   async showFriendsSyncCompleted() {
     const alert = await this.alertCtrl.create({
-      header: 'Sincronización de tus amigos finalizada',
+      header: 'Sincronización de amigos finalizada',
       message: '¿Quieres ver ahora las últimas votaciones de tus amigos?',
       backdropDismiss: true,
       buttons: [
         {
           text: 'Ok',
           handler: () => {
-            this.router.navigate(['films/theatres']);
+            this.router.navigate(['films/friends']);
           }
         },
         {
@@ -95,6 +94,6 @@ export class AppComponent {
   }
 
   storeDarkMode() {
-    this.storage.set('dark_mode', this.darkMode);
+    this.storage.set(Constants.Storage.DARK_MODE, this.darkMode);
   }
 }

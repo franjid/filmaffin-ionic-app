@@ -16,23 +16,23 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): Promise<boolean | UrlTree> {
     return new Promise<boolean | UrlTree>((resolve) => {
-      this.storage.get(Constants.Storage.IS_USER_LOGGED_IN).then((value) => {
+      this.storage.get(Constants.Storage.ID_USER_LOGGED_IN).then((value) => {
         /*******/
         //@todo Remove this!! Added to test how the list of last friends ratings looks like
-        this.storage.set(Constants.Storage.IS_USER_LOGGED_IN, true).then(() => {
-          this.storage.set(Constants.Storage.FRIENDS_SYNCED, true).then(() => {
-            resolve(true);
-          });
-        });
+        // this.storage.set(Constants.Storage.IS_USER_LOGGED_IN, true).then(() => {
+        //   this.storage.set(Constants.Storage.FRIENDS_SYNCED, true).then(() => {
+        //     resolve(true);
+        //   });
+        // });
         /*******/
 
 
-        // if (!value) {
-        //   this.router.navigate(['login'], {skipLocationChange: true});
-        //   resolve(false);
-        // } else {
-        //   resolve(true);
-        // }
+        if (!value) {
+          this.router.navigate(['login'], {skipLocationChange: true});
+          resolve(false);
+        } else {
+          resolve(true);
+        }
       });
     });
   }
