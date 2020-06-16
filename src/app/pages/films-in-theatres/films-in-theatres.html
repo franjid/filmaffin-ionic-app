@@ -26,7 +26,7 @@
           </ion-buttons>
         </div>
       </div>
-      <div class="film-right" (click)="loadFilm(films[i + 1].idFilm)">
+      <div *ngIf="films[i + 1]" class="film-right" (click)="loadFilm(films[i + 1].idFilm)">
         <div class="poster-background">
           <img class="poster" src="{{ films[i + 1].posterImages.medium | filmImg}}">
 

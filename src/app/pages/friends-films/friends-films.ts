@@ -26,24 +26,28 @@ export class FriendsFilmsPage {
   ngOnInit() {
     this.storage.get(Constants.Storage.ID_USER_LOGGED_IN).then((idUser) => {
       if (idUser) {
-        console.log('User logged in');
         this.userLoggedIn = true;
 
         this.storage.get(Constants.Storage.FRIENDS_SYNCED).then((value) => {
           if (value === true) {
-            console.log('Friends synced');
-            console.log('Load friends last ratings');
-
             this.friendsSynced = true;
-
             this.loadUserFriendsLastRatedFilms(idUser);
           } else {
             /**
-             * Maybe we could check calling friends films, so if we get some results it means
-             * the notification failed, but we still could see the list
+             * We call friends films and if we get some results it means
+             * the notification failed, but we still can see the list
              *
-             * Important: In that case, we must set FRIENDS_SYNCED key to true
+             * We set FRIENDS_SYNCED key to true as, obviously, they've been synced :)
              */
+            this.filmaffinService.getUserFriendsLastRatedFilms(idUser, 30, 0)
+              .subscribe(
+                (data: Array<any>) => {
+                  this.storage.set(Constants.Storage.FRIENDS_SYNCED, true).then(() => {
+                    this.friendsSynced = true;
+                    this.filmsGroupedByDateUser = this.getFriendsFilmsGroupedByDateUser(data);
+                  });
+                }
+              );
           }
         });
       }
