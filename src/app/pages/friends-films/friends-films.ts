@@ -114,7 +114,7 @@ export class FriendsFilmsPage {
     );
   }
 
-  private getFriendsFilmsGroupedByDateUser(data) {
+  private getFriendsFilmsGroupedByDateUser(data): Promise<any[]> {
     let filmsGroupedByDate = [];
     let filmsGroupedByUser = [];
 
