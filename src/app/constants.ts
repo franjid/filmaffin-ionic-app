@@ -1,4 +1,4 @@
-// export const FILMAFFIN_API_ENDPOINT= 'http://localhost:8000';
+// export const FILMAFFIN_API_ENDPOINT= 'http://localhost';
 export const FILMAFFIN_API_ENDPOINT = 'http://api.filmaffin.com';
 export const POSTER_IMG_HOST = 'http://img.filmaffin.com';
 export const NUM_RESULTS_POPULAR_FILMS = 10;

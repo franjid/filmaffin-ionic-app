@@ -52,6 +52,9 @@ export class LoginPage {
           .subscribe(
             (data: LoginResponse) => {
               this.storage.set(Constants.Storage.ID_USER_LOGGED_IN, data.userId).then(() => {
+                this.formSubmitted = false;
+                this.isTryingToLogin = false;
+
                 this.router.navigate(['films/friends'], {skipLocationChange: true});
               })
             },

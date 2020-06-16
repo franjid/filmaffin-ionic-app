@@ -4,6 +4,12 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Votaciones de amigos</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -12,13 +18,13 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div id="friends-syncing" *ngIf="userLoggedIn && !friendsSynced">
+  <div id="friends-syncing" *ngIf="userLoggedIn && !friendsSynced && showContent">
     <p>Estamos sincronizando tus amigos y sus últimas votaciones.</p>
     <p>Vuelve aquí dentro de un rato para ver las últimas películas votadas por tus amigos.</p>
     <p>(Intentaremos enviarte una notificación cuando esté todo listo)</p>
   </div>
 
-  <div id="friends-synced" *ngIf="userLoggedIn && friendsSynced">
+  <div id="friends-synced" *ngIf="userLoggedIn && friendsSynced && showContent">
     <div *ngFor="let groupedByDate of filmsGroupedByDateUser">
 <!--      <span class="rating-date">{{ groupedByDate.dateRated * 1000 | date: 'longDate' }}</span>-->
       <div *ngFor="let groupedByUser of groupedByDate.users">
