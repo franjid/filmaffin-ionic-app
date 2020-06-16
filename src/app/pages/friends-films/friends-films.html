@@ -8,6 +8,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher *ngIf="userLoggedIn && friendsSynced" slot="fixed" (ionRefresh)="refreshContent($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div id="friends-syncing" *ngIf="userLoggedIn && !friendsSynced">
     <p>Estamos sincronizando tus amigos y sus últimas votaciones.</p>
     <p>Vuelve aquí dentro de un rato para ver las últimas películas votadas por tus amigos.</p>

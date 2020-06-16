@@ -71,8 +71,6 @@ export class FilmsInTheatresPage {
   }
 
   async showSortOptions() {
-    console.log('Show sort options');
-
     const inputHandler = data => {
       if (this.sortBy !== data.value) {
         sortOptionsAlert.dismiss();
@@ -123,5 +121,11 @@ export class FilmsInTheatresPage {
     });
 
     await sortOptionsAlert.present();
+  }
+
+  refreshContent(event) {
+    this.loadFilmsInTheatres(this.sortBy).then(() => {
+      event.target.complete();
+    })
   }
 }

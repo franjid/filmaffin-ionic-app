@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { LoadingController, ToastController, IonContent, IonSearchbar } from '@ionic/angular';
-import { Router } from '@angular/router';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import * as Constants from '../../constants';
 
@@ -19,14 +18,14 @@ export class PopularFilmsPage {
   numResults: number;
   resultsOffset: number;
   infiniteScrollEnabled: boolean;
+  infiniteScroll;
   searchBarVisible: boolean;
   searchResults: null | boolean;
 
   constructor(
     private loadingCtrl: LoadingController,
     private filmaffinService: FilmaffinServiceProvider,
-    private toastCtrl: ToastController,
-    private router: Router,
+    private toastCtrl: ToastController
   ) {
     this.numResults = Constants.NUM_RESULTS_POPULAR_FILMS;
     this.resultsOffset = 0;
@@ -76,6 +75,8 @@ export class PopularFilmsPage {
   }
 
   doInfinite(infiniteScroll) {
+    this.infiniteScroll = infiniteScroll;
+
     if (!this.infiniteScrollEnabled) {
       infiniteScroll.complete();
       return;
@@ -93,8 +94,10 @@ export class PopularFilmsPage {
 
             this.resultsOffset += this.numResults;
           } else {
-            // If there's no data, we reached the end of results,
-            // therefore we must avoid to continue to try to get more data
+            /**
+             * If there's no data, we reached the end of results,
+             * therefore we must avoid to continue to try to get more data
+             */
             infiniteScroll.target.disabled = true;
           }
 
@@ -177,5 +180,17 @@ export class PopularFilmsPage {
           console.error(error);
         }
       );
+  }
+
+  refreshContent(event) {
+    this.resultsOffset = 0;
+
+    this.loadPopularFilms().then(() => {
+      event.target.complete();
+
+      if (this.infiniteScroll) {
+        this.infiniteScroll.target.disabled = false;
+      }
+    })
   }
 }

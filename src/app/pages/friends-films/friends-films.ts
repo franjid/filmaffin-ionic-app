@@ -12,6 +12,7 @@ import { LoadingController, ToastController } from "@ionic/angular";
 
 export class FriendsFilmsPage {
   userLoggedIn = false;
+  idUser: number;
   friendsSynced = false;
   filmsGroupedByDateUser;
 
@@ -27,6 +28,7 @@ export class FriendsFilmsPage {
     this.storage.get(Constants.Storage.ID_USER_LOGGED_IN).then((idUser) => {
       if (idUser) {
         this.userLoggedIn = true;
+        this.idUser = idUser;
 
         this.storage.get(Constants.Storage.FRIENDS_SYNCED).then((value) => {
           if (value === true) {
@@ -137,5 +139,11 @@ export class FriendsFilmsPage {
     });
 
     return filmsGroupedByUser;
+  }
+
+  refreshContent(event) {
+    this.loadUserFriendsLastRatedFilms(this.idUser).then(() => {
+      event.target.complete();
+    })
   }
 }

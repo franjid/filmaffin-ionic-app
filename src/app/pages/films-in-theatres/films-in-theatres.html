@@ -13,6 +13,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refreshContent($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div id="popular-films-container" *ngFor="let film of films; let i = index; let even = even">
     <div *ngIf="even">
       <div class="film-left" (click)="loadFilm(films[i].idFilm)">
