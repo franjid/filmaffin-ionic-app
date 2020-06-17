@@ -9,6 +9,7 @@ import { LocalDbServiceProvider } from './providers/local-db-service';
 import { Storage } from '@ionic/storage';
 import { FCM } from '@ionic-native/fcm/ngx';
 import * as Constants from './constants';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,8 @@ export class AppComponent {
     private localDb: LocalDbServiceProvider,
     private storage: Storage,
     private fcm: FCM,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private screenOrientation: ScreenOrientation
   ) {
     this.storage.get(Constants.Storage.DARK_MODE).then((value) => {
       this.darkMode = !!value;
@@ -42,6 +44,8 @@ export class AppComponent {
     // this.storage.remove(Constants.Storage.FRIENDS_SYNCED);
 
     this.platform.ready().then(() => {
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+
       if (this.platform.is('cordova')) {
         this.fcm.getToken().then(token => {
           this.storage.set(Constants.Storage.APP_NOTIFICATIONS_TOKEN, token);

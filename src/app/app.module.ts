@@ -13,6 +13,7 @@ import { LocalDbServiceProvider } from './providers/local-db-service';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { FCM } from '@ionic-native/fcm/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
@@ -40,6 +41,7 @@ registerLocaleData(es);
     StatusBar,
     SQLite,
     FCM,
+    ScreenOrientation,
     LocalDbServiceProvider,
     FilmaffinLocalDbServiceProvider,
   ],

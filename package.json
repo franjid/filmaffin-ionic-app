@@ -22,6 +22,7 @@
     "@capacitor/core": "2.1.0",
     "@ionic-native/core": "^5.0.7",
     "@ionic-native/fcm": "^5.26.0",
+    "@ionic-native/screen-orientation": "^5.26.0",
     "@ionic-native/social-sharing": "^5.26.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/sqlite": "^5.26.0",
@@ -33,6 +34,7 @@
     "cordova-plugin-androidx": "^2.0.0",
     "cordova-plugin-androidx-adapter": "^1.1.1",
     "cordova-plugin-fcm-with-dependecy-updated": "^6.4.1",
+    "cordova-plugin-screen-orientation": "^3.0.2",
     "cordova-plugin-x-socialsharing": "^5.6.8",
     "cordova-sqlite-storage": "5.0.0",
     "es6-promise-plugin": "^4.2.2",
@@ -93,7 +95,8 @@
         "ANDROID_DEFAULT_NOTIFICATION_ICON": "@mipmap/fcm_push_icon"
       },
       "cordova-plugin-androidx": {},
-      "cordova-plugin-androidx-adapter": {}
+      "cordova-plugin-androidx-adapter": {},
+      "cordova-plugin-screen-orientation": {}
     },
     "platforms": [
       "browser",
