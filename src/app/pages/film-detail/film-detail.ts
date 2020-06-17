@@ -7,6 +7,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { BigPosterModalPage } from '../big-poster-modal/big-poster-modal';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service';
+import { $e } from "@angular/compiler/src/chars";
 
 @Component({
   selector: 'page-film-detail',
@@ -19,6 +20,7 @@ export class FilmDetailPage {
   shareUrl = Constants.FILMAFFINITY_SHARE_URL;
   isFavoriteFilm: boolean | null = null;
   defaultHref: string;
+  showReviewsType: string = 'pro';
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -69,6 +71,7 @@ export class FilmDetailPage {
       .subscribe(
         (data) => {
           this.film = data[0];
+          console.log(this.film);
 
           loading.dismiss();
 
@@ -139,5 +142,9 @@ export class FilmDetailPage {
     this.socialSharing.share(null, null, null, this.shareUrl + this.film.idFilm).then(() => {
     }).catch(() => {
     });
+  }
+
+  segmentChanged($event) {
+    this.showReviewsType = $event.detail.value;
   }
 }

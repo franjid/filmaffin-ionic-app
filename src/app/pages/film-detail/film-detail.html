@@ -75,4 +75,28 @@
       </div>
     </div>
   </div>
+
+  <div id="reviews">
+    <ion-segment (ionChange)="segmentChanged($event)" value="pro">
+      <ion-segment-button value="pro" *ngIf="film.proReviews.length">
+        <ion-icon name="newspaper-outline"></ion-icon>
+        <ion-label>Críticas <br> profesionales</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="users">
+        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+        <ion-label>Críticas <br> de usuarios</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div id="pro" *ngIf="showReviewsType === 'pro'">
+      <div class="review {{ proReview.trend }}" *ngFor="let proReview of film.proReviews">
+        <p>{{ proReview.review }}</p>
+        <span>{{ proReview.author }}</span>
+      </div>
+    </div>
+
+    <div id="users" *ngIf="showReviewsType === 'users'">
+
+    </div>
+  </div>
 </ion-content>
