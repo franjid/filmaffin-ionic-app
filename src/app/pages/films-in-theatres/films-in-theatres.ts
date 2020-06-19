@@ -22,7 +22,7 @@ export class FilmsInTheatresPage {
     private toastCtrl: ToastController,
     private router: Router
   ) {
-    this.sortBy = 'rating';
+    this.sortBy = 'releaseDate';
   }
 
   async ngOnInit() {
