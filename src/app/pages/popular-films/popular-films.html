@@ -28,7 +28,6 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-
   <h1 *ngIf="searchResults !== null && !searchResults">No se han encontrado coincidencias</h1>
 
   <film-list-element *ngFor="let film of films" [film]="film"></film-list-element>

@@ -46,6 +46,7 @@
     </div>
 
     <div id="genre">
+      <ion-chip outline color="secondary" *ngFor="let genre of film.genres">{{ genre }}</ion-chip>
       <ion-chip outline color="secondary" *ngFor="let topic of film.topics">{{ topic }}</ion-chip>
     </div>
 
