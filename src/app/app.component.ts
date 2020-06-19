@@ -44,9 +44,9 @@ export class AppComponent {
     // this.storage.remove(Constants.Storage.FRIENDS_SYNCED);
 
     this.platform.ready().then(() => {
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-
       if (this.platform.is('cordova')) {
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+
         this.fcm.getToken().then(token => {
           this.storage.set(Constants.Storage.APP_NOTIFICATIONS_TOKEN, token);
         });

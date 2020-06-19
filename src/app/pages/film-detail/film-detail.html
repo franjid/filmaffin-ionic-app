@@ -3,7 +3,8 @@
     <ion-buttons slot="start">
       <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
     </ion-buttons>
-    <ion-title id="film-title" class="ion-text-center">{{ film.title }}</ion-title>
+
+    <ion-title id="film-title" class="ion-text-center" (click)="content.scrollToTop(250)">{{ film.title }}</ion-title>
 
     <ion-buttons slot="end">
       <ion-button (click)="toggleFavoriteFilm()">
@@ -34,11 +35,11 @@
     <div id="year">
       <span>{{ film.year }}</span> <span>{{ film.duration / 60 }} min.</span>
     </div>
-      <ion-row>
-<!--        <ion-col size="6">-->
-<!--          <img id="poster" src="{{ film.posterImages.medium | filmImg}}" (click)="openBigPosterModal()">-->
-<!--        </ion-col>-->
-      </ion-row>
+    <ion-row>
+      <!--        <ion-col size="6">-->
+      <!--          <img id="poster" src="{{ film.posterImages.medium | filmImg}}" (click)="openBigPosterModal()">-->
+      <!--        </ion-col>-->
+    </ion-row>
 
     <div id="synopsis">
       <p>{{ film.synopsis }}</p>
@@ -82,7 +83,7 @@
         <ion-icon name="newspaper-outline"></ion-icon>
         <ion-label>Críticas <br> profesionales</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="users">
+      <ion-segment-button value="users" *ngIf="film.userReviews.length">
         <ion-icon name="chatbox-ellipses-outline"></ion-icon>
         <ion-label>Críticas <br> de usuarios</ion-label>
       </ion-segment-button>
@@ -96,7 +97,36 @@
     </div>
 
     <div id="users" *ngIf="showReviewsType === 'users'">
+      <div class="review" *ngFor="let userReview of film.userReviews">
+        <div class="header">
+          <h4 class="title">{{ userReview.title }}</h4>
+          <ion-badge class="rating">{{ userReview.rating }}</ion-badge>
+        </div>
+        <div class="subheader">
+          <span class="date">{{ userReview.datePublished * 1000 | date: 'longDate' }}</span>
+          <span class="username">{{ userReview.username }}</span>
+        </div>
+        <div class="review-text">
+          <p [innerHTML]="userReview.review | linkify"></p>
 
+          <div class="spoiler" id="{{ userReview.idUser }}" *ngIf="userReview.spoiler">
+            <div class="warning">
+              <ion-slides [options]="slideOpts" (ionSlideDidChange)="onSlideDidChange($event, userReview.idUser)">
+                <ion-slide>
+                  <ion-icon name="lock-open-outline"></ion-icon>
+                </ion-slide>
+                <ion-slide>
+                  <ion-icon name="lock-closed-outline"></ion-icon>
+                  <strong>¡SPOILER!</strong> Desliza para verlo
+                  <ion-icon name="arrow-forward-outline"></ion-icon>
+                </ion-slide>
+              </ion-slides>
+            </div>
+
+            <p *ngIf="showSpoilers[userReview.idUser] === true" [innerHTML]="userReview.spoiler | linkify"></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </ion-content>

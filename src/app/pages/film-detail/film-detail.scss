@@ -151,13 +151,18 @@
 #reviews {
   margin: 0 0 10px 0;
 
-  ion-segment {
-    font-size: 90%;
+  ion-segment-button {
+    font-size: 80%;
+    color: var(--ion-color-primary-tint);
   }
 
   #pro {
     float: left;
     margin: 10px;
+
+    .default {
+      background-color: var(--ion-color-secondary-block-background);
+    }
 
     .positive {
       background-color: #4cb04f0d;
@@ -192,6 +197,93 @@
         float: right;
         font-size: 70%;
         font-weight: 500;
+      }
+    }
+  }
+
+  #users {
+    float: left;
+    margin: 10px;
+
+    .review {
+      float: left;
+      margin: 0 0 15px 0;
+      padding: 0 10px 5px 10px;
+      border-radius: 5px;
+      background-color: var(--ion-color-secondary-block-background);
+
+      .header {
+        .title {
+          float: left;
+          width: 85%;
+          min-height: 30px;
+          margin-top: 10px;
+          font-size: 95%;
+          font-weight: 500;
+          line-height: 1.4em;
+          color: var(--ion-color-secondary-tint);
+        }
+
+        .rating {
+          float: right;
+          margin-top: 10px;
+          padding: 3px 7px;
+          font-size: 140%;
+          background-color: #820000;
+        }
+      }
+
+      .subheader {
+        .date {
+          float: left;
+          font-size: 70%;
+          font-weight: 500;
+        }
+
+        .username {
+          float: right;
+          font-size: 80%;
+          font-weight: 800;
+          color: var(--ion-color-yellow);
+        }
+      }
+
+      .review-text, .review-spoiler {
+        float: left;
+        font-size: 90%;
+        line-height: 1.4em;
+        white-space: pre-wrap;
+      }
+
+      .spoiler {
+        .warning {
+          margin-bottom: 5px;
+          padding: 5px;
+          font-size: 80%;
+          text-align: center;
+          color: var(--ion-color-danger-light-contrast);
+          border-radius: 5px;
+
+          ion-slides {
+            height: 40px;
+            background-color: var(--ion-color-danger-light-shade);
+            border-radius: 30px;
+          }
+          ion-slide {
+            width: 100% !important;
+            font-size: 110%;
+
+            ion-icon {
+              margin: 0 15px;
+            }
+          }
+        }
+
+        p {
+          margin: 10px -10px;
+          padding: 10px;
+          background-color: var(--ion-color-danger-light);
+        }
       }
     }
   }

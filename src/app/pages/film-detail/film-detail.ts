@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonContent, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import * as Constants from '../../constants';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -7,7 +7,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { BigPosterModalPage } from '../big-poster-modal/big-poster-modal';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service';
-import { $e } from "@angular/compiler/src/chars";
+
 
 @Component({
   selector: 'page-film-detail',
@@ -16,11 +16,15 @@ import { $e } from "@angular/compiler/src/chars";
 })
 
 export class FilmDetailPage {
+  @ViewChild(IonContent, {static: false}) content: IonContent;
+
   film: any;
   shareUrl = Constants.FILMAFFINITY_SHARE_URL;
   isFavoriteFilm: boolean | null = null;
   defaultHref: string;
   showReviewsType: string = 'pro';
+  showSpoilers: Array<any> = [];
+  slideOpts;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -52,6 +56,11 @@ export class FilmDetailPage {
       musicians: [],
       cinematographers: []
     };
+
+    this.slideOpts = {
+      initialSlide: 2,
+      speed: 400
+    };
   }
 
   async ngOnInit() {
@@ -71,8 +80,6 @@ export class FilmDetailPage {
       .subscribe(
         (data) => {
           this.film = data[0];
-          console.log(this.film);
-
           loading.dismiss();
 
           this.filmaffinLocalDb.isFavoriteFilm(this.film.idFilm)
@@ -146,5 +153,22 @@ export class FilmDetailPage {
 
   segmentChanged($event) {
     this.showReviewsType = $event.detail.value;
+  }
+
+  onSlideDidChange(event, spoilerBoxId) {
+    let spoilerBox = document.getElementById(spoilerBoxId);
+
+    event.target.isEnd().then((isEnd) => {
+      if (isEnd) {
+        this.showSpoilers[spoilerBoxId] = false;
+      }
+    });
+
+    event.target.isBeginning().then((isBeggining) => {
+      if (isBeggining) {
+        this.showSpoilers[spoilerBoxId] = true;
+        this.content.scrollToPoint(0, spoilerBox.offsetTop - 5, 1000);
+      }
+    });
   }
 }
