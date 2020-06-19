@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { LoadingController, ToastController, IonContent, IonSearchbar } from '@ionic/angular';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import * as Constants from '../../constants';
+import { FirebaseAnalyticsProvider } from "../../providers/firebase-analytics";
 
 @Component({
   selector: 'page-popular-films',
@@ -25,7 +26,8 @@ export class PopularFilmsPage {
   constructor(
     private loadingCtrl: LoadingController,
     private filmaffinService: FilmaffinServiceProvider,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+  private firebaseAnalytics: FirebaseAnalyticsProvider,
   ) {
     this.numResults = Constants.NUM_RESULTS_POPULAR_FILMS;
     this.resultsOffset = 0;
@@ -36,6 +38,12 @@ export class PopularFilmsPage {
 
   async ngOnInit() {
     await this.loadPopularFilms();
+    // this.firebaseAnalytics.trackView('popular_films');
+
+  }
+
+  ionViewDidEnter() {
+    this.firebaseAnalytics.trackView('popular_films');
   }
 
   async loadPopularFilms() {
@@ -159,6 +167,8 @@ export class PopularFilmsPage {
     if (searchString.length < 3) {
       return;
     }
+
+    this.firebaseAnalytics.trackEvent('popular_films_search', {search: searchString});
 
     this.filmaffinService.searchFilm(searchString)
       .subscribe(

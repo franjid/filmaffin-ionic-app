@@ -17,7 +17,7 @@ import { FilmsInTheatresPage } from "./films-in-theatres";
   declarations: [
     FilmsInTheatresPage,
   ],
-  providers: [FilmaffinServiceProvider]
+  providers: []
 })
 
 export class FilmsInTheatresModule {

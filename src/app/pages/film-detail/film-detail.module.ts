@@ -11,7 +11,6 @@ import { FilmImgPipe } from "../../pipes/film-img";
 import { BigPosterModalPageModule } from "../big-poster-modal/big-poster-modal.module";
 import { BigPosterModalPage } from "../big-poster-modal/big-poster-modal";
 import { SQLite } from "@ionic-native/sqlite/ngx";
-import { FilmaffinLocalDbServiceProvider } from "../../providers/filmaffin-local-db-service";
 
 @NgModule({
   imports: [
@@ -27,8 +26,7 @@ import { FilmaffinLocalDbServiceProvider } from "../../providers/filmaffin-local
   providers: [
     SocialSharing,
     FilmImgPipe,
-    SQLite,
-    FilmaffinLocalDbServiceProvider
+    SQLite
   ],
   entryComponents: [BigPosterModalPage],
 })

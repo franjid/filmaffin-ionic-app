@@ -4,7 +4,6 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginPage } from "./login";
-import { FilmaffinServiceProvider } from "../../providers/filmaffin-service";
 
 @NgModule({
   imports: [
@@ -16,9 +15,7 @@ import { FilmaffinServiceProvider } from "../../providers/filmaffin-service";
   declarations: [
     LoginPage,
   ],
-  providers: [
-    FilmaffinServiceProvider
-  ],
+  providers: [],
 })
 export class LoginModule {
 }

@@ -7,6 +7,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { BigPosterModalPage } from '../big-poster-modal/big-poster-modal';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service';
+import { FirebaseAnalyticsProvider } from "../../providers/firebase-analytics";
 
 
 @Component({
@@ -34,7 +35,8 @@ export class FilmDetailPage {
     private socialSharing: SocialSharing,
     private loadingCtrl: LoadingController,
     private FilmaffinService: FilmaffinServiceProvider,
-    private filmaffinLocalDb: FilmaffinLocalDbServiceProvider
+    private filmaffinLocalDb: FilmaffinLocalDbServiceProvider,
+    private firebaseAnalytics: FirebaseAnalyticsProvider
   ) {
     this.defaultHref = '/films/popular';
 
@@ -67,6 +69,10 @@ export class FilmDetailPage {
     const filmId = this.actRoute.snapshot.params.filmId;
 
     await this.loadFilm(filmId);
+  }
+
+  ionViewDidEnter() {
+    this.firebaseAnalytics.trackView('film_detail');
   }
 
   async loadFilm(filmId) {
@@ -129,6 +135,7 @@ export class FilmDetailPage {
     if (this.isFavoriteFilm) {
       this.filmaffinLocalDb.deleteFavoriteFilm(this.film.idFilm)
         .then(() => {
+          this.firebaseAnalytics.trackEvent('film_detail_favorite_deleted', {idFilm: this.film.idFilm});
           this.isFavoriteFilm = false;
         })
         .catch(error => {
@@ -137,6 +144,7 @@ export class FilmDetailPage {
     } else {
       this.filmaffinLocalDb.saveFavoriteFilm(this.film.idFilm)
         .then(() => {
+          this.firebaseAnalytics.trackEvent('film_detail_favorite_added', {idFilm: this.film.idFilm});
           this.isFavoriteFilm = true;
         })
         .catch(error => {
@@ -147,6 +155,7 @@ export class FilmDetailPage {
 
   shareFilm() {
     this.socialSharing.share(null, null, null, this.shareUrl + this.film.idFilm).then(() => {
+      this.firebaseAnalytics.trackEvent('film_detail_shared', {idFilm: this.film.idFilm});
     }).catch(() => {
     });
   }

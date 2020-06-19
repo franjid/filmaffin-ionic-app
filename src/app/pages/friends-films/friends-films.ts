@@ -4,6 +4,7 @@ import { FilmaffinServiceProvider } from "../../providers/filmaffin-service";
 import * as Constants from '../../constants';
 import { AlertController, LoadingController, ToastController } from "@ionic/angular";
 import { Router } from "@angular/router";
+import { FirebaseAnalyticsProvider } from "../../providers/firebase-analytics";
 
 @Component({
   selector: 'page-friends-films',
@@ -24,8 +25,13 @@ export class FriendsFilmsPage {
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
     private router: Router,
-    private filmaffinService: FilmaffinServiceProvider
+    private filmaffinService: FilmaffinServiceProvider,
+    private firebaseAnalytics: FirebaseAnalyticsProvider
   ) {
+  }
+
+  ionViewDidEnter() {
+    this.firebaseAnalytics.trackView('friends_films');
   }
 
   async ngOnInit() {
@@ -183,6 +189,11 @@ export class FriendsFilmsPage {
           handler: () => {
             this.storage.remove(Constants.Storage.ID_USER_LOGGED_IN).then(() => {
               this.storage.remove(Constants.Storage.FRIENDS_SYNCED).then(() => {
+                this.userLoggedIn = false;
+                this.friendsSynced = false;
+                this.filmsGroupedByDateUser = [];
+
+                this.firebaseAnalytics.trackEvent('logout', {});
                 this.router.navigate(['films/popular']);
               });
             })

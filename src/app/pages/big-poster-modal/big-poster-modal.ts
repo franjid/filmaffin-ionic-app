@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
+import { FirebaseAnalyticsProvider } from "../../providers/firebase-analytics";
 
 @Component({
   selector: 'page-big-poster-modal',
@@ -12,9 +13,14 @@ export class BigPosterModalPage {
 
   constructor(
     public modalCtrl: ModalController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    private firebaseAnalytics: FirebaseAnalyticsProvider
   ) {
     this.film = this.navParams.get('film');
+  }
+
+  ionViewDidEnter() {
+    this.firebaseAnalytics.trackView('big_poster_modal');
   }
 
   closeModal() {

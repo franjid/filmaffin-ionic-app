@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service';
 import { FavoriteFilmsPage } from './favorite-films';
 import { FavoriteFilmsRoutingModule } from './favorite-films-routing.module';
 import { PipesModule } from '../../pipes/pipes.module';
@@ -18,9 +17,7 @@ import { AppSharedComponentsModule } from '../../app-shared-components.module';
   declarations: [
     FavoriteFilmsPage,
   ],
-  providers: [
-    FilmaffinLocalDbServiceProvider
-  ],
+  providers: [],
 })
 export class FavoriteFilmsModule {
 }

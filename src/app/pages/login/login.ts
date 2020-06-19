@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UserLogin } from '../../interfaces/user-login';
 import { FilmaffinServiceProvider } from "../../providers/filmaffin-service";
 import * as Constants from '../../constants';
+import { FirebaseAnalyticsProvider } from "../../providers/firebase-analytics";
 
 interface LoginResponse {
   userId: number,
@@ -27,17 +28,21 @@ export class LoginPage {
   constructor(
     private filmaffinService: FilmaffinServiceProvider,
     private storage: Storage,
-    private router: Router
+    private router: Router,
+    private firebaseAnalytics: FirebaseAnalyticsProvider
   ) {
   }
 
   ionViewWillEnter() {
     this.storage.get(Constants.Storage.ID_USER_LOGGED_IN).then((value) => {
       if (value) {
-        console.log('User logged in');
         this.router.navigate(['films/friends']);
       }
     });
+  }
+
+  ionViewDidEnter() {
+    this.firebaseAnalytics.trackView('login');
   }
 
   onLogin(form: NgForm) {
@@ -55,6 +60,7 @@ export class LoginPage {
                 this.formSubmitted = false;
                 this.isTryingToLogin = false;
 
+                this.firebaseAnalytics.trackEvent('login_success', {username: this.login.username});
                 this.router.navigate(['films/friends'], {skipLocationChange: true});
               })
             },
@@ -64,6 +70,7 @@ export class LoginPage {
               this.formSubmitted = false;
               this.isTryingToLogin = false;
               this.errorLogin = true;
+              this.firebaseAnalytics.trackEvent('login_error', {username: this.login.username});
             }
           );
       });

@@ -17,6 +17,9 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { FirebaseAnalytics } from "@ionic-native/firebase-analytics/ngx";
+import { FirebaseAnalyticsProvider } from "./providers/firebase-analytics";
+import { FilmaffinServiceProvider } from "./providers/filmaffin-service";
 
 registerLocaleData(es);
 
@@ -42,8 +45,11 @@ registerLocaleData(es);
     SQLite,
     FCM,
     ScreenOrientation,
+    FirebaseAnalyticsProvider,
+    FirebaseAnalytics,
+    FilmaffinServiceProvider,
     LocalDbServiceProvider,
-    FilmaffinLocalDbServiceProvider,
+    FilmaffinLocalDbServiceProvider
   ],
   bootstrap: [AppComponent],
 })

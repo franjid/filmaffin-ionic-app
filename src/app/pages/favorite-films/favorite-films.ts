@@ -3,6 +3,7 @@ import { LoadingController, ToastController } from '@ionic/angular';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import { Router } from '@angular/router';
 import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service';
+import { FirebaseAnalyticsProvider } from "../../providers/firebase-analytics";
 
 @Component({
   selector: 'page-favorite-films',
@@ -19,7 +20,12 @@ export class FavoriteFilmsPage {
     private toastCtrl: ToastController,
     private filmaffinService: FilmaffinServiceProvider,
     private filmaffinLocalDb: FilmaffinLocalDbServiceProvider,
+    private firebaseAnalytics: FirebaseAnalyticsProvider
   ) {
+  }
+
+  ionViewDidEnter() {
+    this.firebaseAnalytics.trackView('favorite_films');
   }
 
   async ionViewWillEnter() {
