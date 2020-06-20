@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 import { Platform } from "@ionic/angular";
 
@@ -9,7 +8,6 @@ export class FirebaseAnalyticsProvider {
     private platform: Platform,
     private firebaseAnalytics: FirebaseAnalytics
   ) {
-    console.log('Hello CustomFirebaseAnalyticsProvider Provider');
   }
 
   trackView(screenName: string) {
