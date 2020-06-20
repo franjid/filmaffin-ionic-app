@@ -68,7 +68,7 @@ export class AppComponent {
 
       this.localDb.ready.then(() => {
         this.filmaffinLocalDb.createFavoriteFilmTable().then(() => {
-          this.statusBar.styleDefault();
+          this.statusBar.styleLightContent();
           this.splashScreen.hide();
         });
       });
