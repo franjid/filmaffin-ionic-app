@@ -86,6 +86,11 @@ export class FilmDetailPage {
       .subscribe(
         (data) => {
           this.film = data[0];
+
+          if (!this.film.proReviews.length && this.film.userReviews.length) {
+            this.showReviewsType = 'users';
+          }
+
           loading.dismiss();
 
           this.filmaffinLocalDb.isFavoriteFilm(this.film.idFilm)

@@ -79,7 +79,7 @@
   </div>
 
   <div id="reviews">
-    <ion-segment (ionChange)="segmentChanged($event)" value="pro">
+    <ion-segment (ionChange)="segmentChanged($event)" [value]="showReviewsType">
       <ion-segment-button value="pro" *ngIf="film.proReviews.length">
         <ion-icon name="newspaper-outline"></ion-icon>
         <ion-label>Críticas <br> profesionales</ion-label>
