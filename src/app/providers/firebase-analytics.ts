@@ -12,13 +12,17 @@ export class FirebaseAnalyticsProvider {
 
   trackView(screenName: string) {
     this.platform.ready().then(() => {
-      this.firebaseAnalytics.setCurrentScreen(screenName);
+      if (this.platform.is('cordova')) {
+        this.firebaseAnalytics.setCurrentScreen(screenName);
+      }
     });
   }
 
   trackEvent(eventName: string, eventParams: any) {
     this.platform.ready().then(() => {
-      this.firebaseAnalytics.logEvent(eventName, eventParams);
+      if (this.platform.is('cordova')) {
+        this.firebaseAnalytics.logEvent(eventName, eventParams);
+      }
     });
   }
 }
