@@ -55,11 +55,15 @@ export class AppComponent {
           switch (data.action) {
             case 'friends_sync_finished':
               this.storage.set(Constants.Storage.FRIENDS_SYNCED, true).then(() => {
-                if (data.wasTapped) {
-                  console.log('Received in background');
-                  this.router.navigate(['films/friends']);
-                } else {
-                  console.log('Received in foreground');
+                if (data.wasTapped) { // Received in background
+                  if (this.router.isActive('/films/friends', true)) {
+                    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+                      this.router.navigate(['films/friends'])
+                    );
+                  } else {
+                    this.router.navigate(['films/friends'])
+                  }
+                } else { // Received in foreground
                   this.showFriendsSyncCompleted();
                 }
               })
@@ -67,9 +71,18 @@ export class AppComponent {
               break;
             case 'friends_new_ratings':
               if (data.wasTapped) {
-                console.log('Received in background');
-                this.router.navigate(['films/friends']);
+                if (this.router.isActive('/films/friends', true)) {
+                  this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+                    this.router.navigate(['films/friends'])
+                  );
+                } else {
+                  this.router.navigate(['films/friends'])
+                }
               }
+              /**
+               * If it was received in foreground, we don't do anything,
+               * we don't want to disturb their navigation
+               */
               break;
           }
         });
@@ -93,7 +106,13 @@ export class AppComponent {
         {
           text: 'Ok',
           handler: () => {
-            this.router.navigate(['films/friends']);
+            if (this.router.isActive('/films/friends', true)) {
+              this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+                this.router.navigate(['films/friends'])
+              );
+            } else {
+              this.router.navigate(['films/friends'])
+            }
           }
         },
         {

@@ -33,7 +33,7 @@
 
             <div routerLinkActive="selected">
               <ion-item routerLink="/films/friends" detail="false"
-                        [class.selected]="router.isActive('/films/friends') || router.isActive('/login')">
+                        [class.selected]="router.isActive('/films/friends', true) || router.isActive('/login', true)">
                 <ion-icon slot="start" name="people-circle-outline"></ion-icon>
                 <ion-label>
                   Votaciones de amigos
