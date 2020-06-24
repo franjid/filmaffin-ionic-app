@@ -52,16 +52,25 @@ export class AppComponent {
         });
 
         this.fcm.onNotification().subscribe(data => {
-          if (data.action === 'friends_sync_finished') {
-            this.storage.set(Constants.Storage.FRIENDS_SYNCED, true).then(() => {
+          switch (data.action) {
+            case 'friends_sync_finished':
+              this.storage.set(Constants.Storage.FRIENDS_SYNCED, true).then(() => {
+                if (data.wasTapped) {
+                  console.log('Received in background');
+                  this.router.navigate(['films/friends']);
+                } else {
+                  console.log('Received in foreground');
+                  this.showFriendsSyncCompleted();
+                }
+              })
+
+              break;
+            case 'friends_new_ratings':
               if (data.wasTapped) {
                 console.log('Received in background');
                 this.router.navigate(['films/friends']);
-              } else {
-                console.log('Received in foreground');
-                this.showFriendsSyncCompleted();
               }
-            })
+              break;
           }
         });
       }
