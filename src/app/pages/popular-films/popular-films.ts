@@ -22,6 +22,7 @@ export class PopularFilmsPage {
   infiniteScroll;
   searchBarVisible: boolean;
   searchResults: null | boolean;
+  searching: boolean = false;
 
   constructor(
     private loadingCtrl: LoadingController,
@@ -157,6 +158,7 @@ export class PopularFilmsPage {
     this.infiniteScrollEnabled = true;
     this.content.scrollToTop();
     this.searchResults = null;
+    this.searching = false;
   }
 
   searchFilm(search) {
@@ -168,6 +170,7 @@ export class PopularFilmsPage {
       return;
     }
 
+    this.searching = true;
     this.firebaseAnalytics.trackEvent('popular_films_search', {search: searchString});
 
     this.filmaffinService.searchFilm(searchString)
@@ -182,10 +185,13 @@ export class PopularFilmsPage {
             this.films = [];
             this.searchResults = false;
           }
+
+          this.searching = false;
         },
         async (error) => {
           this.films = [];
           this.searchResults = false;
+          this.searching = false;
 
           console.error(error);
         }
