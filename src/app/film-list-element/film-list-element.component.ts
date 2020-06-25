@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Film } from "../interfaces/film";
 
 @Component({
   selector: 'film-list-element',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./film-list-element.component.scss'],
 })
 export class FilmListElementComponent implements OnInit {
-  @Input() film: [];
+  @Input() film: Film;
   @Input() userRating: number;
 
   constructor(

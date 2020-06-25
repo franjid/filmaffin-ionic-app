@@ -8,6 +8,7 @@ import { BigPosterModalPage } from '../big-poster-modal/big-poster-modal';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service';
 import { FirebaseAnalyticsProvider } from "../../providers/firebase-analytics";
+import { Film } from "../../interfaces/film";
 
 
 @Component({
@@ -19,7 +20,7 @@ import { FirebaseAnalyticsProvider } from "../../providers/firebase-analytics";
 export class FilmDetailPage {
   @ViewChild(IonContent, {static: false}) content: IonContent;
 
-  film: any;
+  film: Film;
   shareUrl = Constants.FILMAFFINITY_SHARE_URL;
   isFavoriteFilm: boolean | null = null;
   defaultHref: string;
@@ -41,22 +42,29 @@ export class FilmDetailPage {
     this.defaultHref = '/films/popular';
 
     this.film = {
+      idFilm: null,
       title: null,
+      originalTitle: null,
       rating: null,
       numRatings: null,
       year: null,
       duration: 60,
       country: null,
       posterImages: {
-        medium: null
+        small: null,
+        medium: null,
+        large: null
       },
       synopsis: null,
       directors: [],
       actors: [],
       topics: [],
+      genres: [],
       screenplayers: [],
       musicians: [],
-      cinematographers: []
+      cinematographers: [],
+      proReviews: [],
+      userReviews: []
     };
 
     this.slideOpts = {
