@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.filmaffin.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.filmaffin.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>filmaffin</name>
-    <description>Filmaffinity App (no official).</description>
-    <author email="info@filmaffin.com" href="https://filmaffin.com/">Filmaffin Team</author>
+    <description>Filmaffinity App (no oficial)</description>
+    <author email="contacto@filmaffin.com" href="http://filmaffin.com/">Filmaffin Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

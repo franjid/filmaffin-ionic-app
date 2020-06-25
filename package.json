@@ -1,8 +1,8 @@
 {
   "name": "filmaffin",
-  "version": "0.0.4",
-  "author": "Filamaffin Team",
-  "homepage": "https://filmaffin.com/",
+  "version": "1.0.0",
+  "author": "Filmaffin Team",
+  "homepage": "http://filmaffin.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -76,7 +76,7 @@
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
   },
-  "description": "An Ionic project",
+  "description": "Filmaffin",
   "cordova": {
     "plugins": {
       "cordova-plugin-x-socialsharing": {
