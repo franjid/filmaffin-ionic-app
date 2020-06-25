@@ -40,10 +40,9 @@ export class FavoriteFilmsPage {
 
     this.filmaffinLocalDb.getFavoriteFilms()
       .then(idFilms => {
-        loading.dismiss();
-
         if (!Array.isArray(idFilms) || !idFilms.length) {
           this.films = [];
+          loading.dismiss();
           return;
         }
 
@@ -51,8 +50,11 @@ export class FavoriteFilmsPage {
           .subscribe(
             (data) => {
               this.films = data;
+              loading.dismiss();
             },
             async (error) => {
+              loading.dismiss();
+
               const toast = await this.toastCtrl.create({
                 message: 'No se pueden cargar las películas.' + ' \n' + 'Revisa tu conexión a internet.',
                 duration: 5000,
@@ -70,7 +72,6 @@ export class FavoriteFilmsPage {
               await toast.present();
 
               console.error(error);
-
             }
           );
       })
