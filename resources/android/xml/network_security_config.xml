@@ -2,7 +2,7 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
-        <domain>api.filmaffin.com</domain>
-        <domain>img.filmaffin.com</domain>
+        <domain includeSubdomains="true">api.filmaffin.com</domain>
+        <domain includeSubdomains="true">img.filmaffin.com</domain>
     </domain-config>
 </network-security-config>
