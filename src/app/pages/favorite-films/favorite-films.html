@@ -8,5 +8,7 @@
 </ion-header>
 
 <ion-content>
+  <h1 *ngIf="!this.films || !this.films.length">Aún no has añadido ninguna película</h1>
+
   <film-list-element *ngFor="let film of films" [film]="film"></film-list-element>
 </ion-content>
