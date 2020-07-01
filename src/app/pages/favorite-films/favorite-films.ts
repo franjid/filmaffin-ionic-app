@@ -76,6 +76,7 @@ export class FavoriteFilmsPage {
           );
       })
       .catch(error => {
+        loading.dismiss();
         console.error(error);
       });
   }

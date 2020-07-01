@@ -5,7 +5,7 @@ import { browserLocalDb } from './browser-local-db-service';
 import { environment } from '../../environments/environment';
 
 declare var window: any;
-const DB_NAME = environment.production ? 'data_native.db' : 'data_browser.db';
+const DB_NAME = 'data_filmaffin.db';
 
 @Injectable()
 

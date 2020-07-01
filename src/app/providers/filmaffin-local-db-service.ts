@@ -14,16 +14,30 @@ export class FilmaffinLocalDbServiceProvider {
     });
   }
 
-  createFavoriteFilmTable() {
+  getDb(): Promise<any> {
+    return new Promise((resolve) => {
+      this.localDb.getDb().then((db) => {
+        this.db = db;
+        resolve(db);
+      });
+    });
+  }
+
+
+  createFavoriteFilmTable(): Promise<any> {
     // this.db.executeSql('DROP TABLE favoriteFilm', []);
 
-    const sql = 'CREATE TABLE IF NOT EXISTS ' +
-      'favoriteFilm(' +
-      'idFilm INTEGER PRIMARY KEY UNIQUE, ' +
-      'whenAdded INTEGER' +
-      ')';
+    return new Promise((resolve) => {
+      const sql = 'CREATE TABLE IF NOT EXISTS ' +
+        'favoriteFilm(' +
+        'idFilm INTEGER PRIMARY KEY UNIQUE, ' +
+        'whenAdded INTEGER' +
+        ')';
 
-    return this.db.executeSql(sql, []);
+      this.getDb().then((db) => {
+        resolve(this.db.executeSql(sql, []));
+      });
+    });
   }
 
   saveFavoriteFilm(idFilm: number) {
