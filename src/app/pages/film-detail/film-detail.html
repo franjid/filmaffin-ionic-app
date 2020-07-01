@@ -108,7 +108,7 @@
           <span class="username">{{ userReview.username }}</span>
         </div>
         <div class="review-text">
-          <p [innerHTML]="userReview.review | linkify"></p>
+          <p [innerHTML]="userReview.review | removeSpaces | linkify"></p>
 
           <div class="spoiler" id="{{ userReview.idUser }}" *ngIf="userReview.spoiler">
             <div class="warning">
@@ -124,7 +124,7 @@
               </ion-slides>
             </div>
 
-            <p *ngIf="showSpoilers[userReview.idUser] === true" [innerHTML]="userReview.spoiler | linkify"></p>
+            <p *ngIf="showSpoilers[userReview.idUser] === true" [innerHTML]="userReview.spoiler | removeSpaces | linkify"></p>
           </div>
         </div>
       </div>

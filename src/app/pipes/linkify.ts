@@ -9,14 +9,14 @@ export class LinkifyPipe {
     return this.linkify(string);
   }
 
-  private linkify(plainText): string {
+  private linkify(string: string): string {
     let replacedText;
     let replacePattern1;
     let replacePattern2;
 
     //URLs starting with http://, https://
     replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-    replacedText = plainText.replace(replacePattern1, '<a href="$1" target="_blank">Link</a>');
+    replacedText = string.replace(replacePattern1, '<a href="$1" target="_blank">Link</a>');
 
     //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
     replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
