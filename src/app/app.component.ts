@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { AlertController, MenuController, Platform } from '@ionic/angular';
+import { AlertController, IonRouterOutlet, MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
@@ -17,6 +17,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  @ViewChild(IonRouterOutlet, {static: true}) routerOutlet: IonRouterOutlet;
+
   darkMode: boolean;
 
   constructor(
@@ -45,6 +47,12 @@ export class AppComponent {
 
     this.platform.ready().then(() => {
       if (this.platform.is('cordova')) {
+        this.platform.backButton.subscribeWithPriority(-1, () => {
+          if (!this.routerOutlet.canGoBack()) {
+            navigator['app'].exitApp();
+          }
+        });
+
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
         this.fcm.getToken().then(token => {
