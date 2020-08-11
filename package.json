@@ -42,6 +42,7 @@
     "cordova-support-android-plugin": "^1.0.2",
     "cordova-support-google-services": "^1.4.0",
     "es6-promise-plugin": "^4.2.2",
+    "ngx-pinch-zoom": "^2.4.4",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

@@ -10,5 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <img src="{{ film.posterImages.large | filmImg}}" (click)="closeModal()" alt="film.title">
+  <pinch-zoom limit-zoom="10">
+    <img src="{{ film.posterImages.large | filmImg}}" (click)="closeModal()" alt="film.title">
+  </pinch-zoom>
 </ion-content>
