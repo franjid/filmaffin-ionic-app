@@ -19,7 +19,7 @@
     </div>
 
     <div class="year">
-      <span>{{ film.year }}</span> <span>{{ film.duration / 60 }} min.</span>
+      <span>{{ film.year }}</span> <span *ngIf="film.duration">{{ film.duration / 60 }} min.</span>
       <img class="flag" src="assets/img/flags/{{ film.country }}.svg" alt="{{ film.country }}">
     </div>
 
