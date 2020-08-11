@@ -22,6 +22,7 @@ export class FavoriteFilmsPage {
     private filmaffinLocalDb: FilmaffinLocalDbServiceProvider,
     private firebaseAnalytics: FirebaseAnalyticsProvider
   ) {
+    this.films = null;
   }
 
   ionViewDidEnter() {
