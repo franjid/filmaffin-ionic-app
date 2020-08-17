@@ -71,6 +71,17 @@
         <span class="content">{{ film.cinematographers.join(", ") }}</span>
       </div>
     </div>
+
+    <ion-slides class="frames" *ngIf="film.numFrames > 1; else noFramesSlider" [options]="sliderFramesOpts">
+      <ion-slide *ngFor="let frame of film.frames">
+        <img src="{{ frame.large | filmImg }}">
+      </ion-slide>
+    </ion-slides>
+    <ng-template #noFramesSlider>
+      <div class="frames" *ngIf="film.numFrames == 1">
+        <img src="{{ film.frames[0].large | filmImg }}">
+      </div>
+    </ng-template>
   </div>
 
   <div id="reviews">
@@ -107,7 +118,7 @@
 
           <div class="spoiler" id="{{ userReview.idUser }}" *ngIf="userReview.spoiler">
             <div class="warning">
-              <ion-slides [options]="slideOpts" (ionSlideDidChange)="onSlideDidChange($event, userReview.idUser)">
+              <ion-slides [options]="sliderSpoilerOpts" (ionSlideDidChange)="onSlideDidChange($event, userReview.idUser)">
                 <ion-slide>
                   <ion-icon name="lock-open-outline"></ion-icon>
                 </ion-slide>

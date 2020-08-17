@@ -148,6 +148,20 @@
   }
 }
 
+.frames {
+  max-height: 250px;
+  text-align: center;
+
+  ion-slide {
+    margin: auto;
+  }
+
+  img {
+    max-height: 250px;
+    max-width: 100%;
+  }
+}
+
 #reviews {
   margin: 0 0 10px 0;
 

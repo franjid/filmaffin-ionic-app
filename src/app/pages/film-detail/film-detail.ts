@@ -26,7 +26,8 @@ export class FilmDetailPage {
   defaultHref: string;
   showReviewsType: string = 'pro';
   showSpoilers: Array<any> = [];
-  slideOpts;
+  sliderSpoilerOpts;
+  sliderFramesOpts;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -64,12 +65,20 @@ export class FilmDetailPage {
       musicians: [],
       cinematographers: [],
       proReviews: [],
-      userReviews: []
+      userReviews: [],
+      numFrames: 0,
+      frames: []
     };
 
-    this.slideOpts = {
+    this.sliderSpoilerOpts = {
       initialSlide: 2,
       speed: 400
+    };
+
+    this.sliderFramesOpts = {
+      initialSlide: 0,
+      speed: 400,
+      loop: true
     };
   }
 

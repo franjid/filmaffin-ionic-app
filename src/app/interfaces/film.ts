@@ -22,4 +22,6 @@ export interface Film {
   cinematographers: string[],
   proReviews: [],
   userReviews: [],
+  numFrames: number,
+  frames: []
 }
