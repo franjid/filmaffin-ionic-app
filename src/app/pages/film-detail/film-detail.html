@@ -29,11 +29,20 @@
   </div>
 
   <div id="main">
-    <h1>{{ film.title }}</h1>
-    <h2 *ngIf="film.title !== film.originalTitle">{{ film.originalTitle }}</h2>
+    <div id="film-main-data">
+      <h1>{{ film.title }}</h1>
+      <h2 *ngIf="film.title !== film.originalTitle">{{ film.originalTitle }}</h2>
 
-    <div id="year">
-      <span>{{ film.year }}</span> <span *ngIf="film.duration">{{ film.duration / 60 }} min.</span>
+      <div id="year">
+        <span>{{ film.year }}</span>
+        <span *ngIf="film.duration">{{ film.duration / 60 }} min.</span>
+      </div>
+    </div>
+
+    <div id="filmaffinity-link">
+      <a href="{{shareUrl + film.idFilm}}" target="_blank">
+        <img src="assets/img/filmaffinity_logo.png" alt="Ver película en Filmaffinity">
+      </a>
     </div>
 
     <div id="synopsis">

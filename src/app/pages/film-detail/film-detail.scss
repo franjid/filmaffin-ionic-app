@@ -78,37 +78,44 @@
   margin: 8px 0 0 0;
   padding: 0 10px 0 10px;
 
-  h1 {
-    margin: 0;
-    color: var(--ion-color-dark);
-    font-size: 150%;
-    font-weight: bold;
-  }
+  #film-main-data {
+    width: 90%;
+    float: left;
 
-  h2 {
-    margin: 3px 0 0 0;
-    color: var(--ion-color-medium);
-    font-size: 100%;
-    font-weight: normal;
-  }
+    h1 {
+      margin: 0;
+      color: var(--ion-color-dark);
+      font-size: 150%;
+      font-weight: bold;
+    }
 
-  #year {
-    margin: 8px 0 0 0;
-    color: var(--ion-color-medium);
-    font-size: 80%;
+    h2 {
+      margin: 3px 0 0 0;
+      color: var(--ion-color-medium);
+      font-size: 100%;
+      font-weight: normal;
+    }
 
-    span {
-      margin-right: 10px;
+    #year {
+      margin: 8px 0 0 0;
+      color: var(--ion-color-medium);
+      font-size: 80%;
+
+      span {
+        margin-right: 10px;
+      }
     }
   }
 
-  //#poster {
-  //  box-shadow: 1px 1px 5px #888;
-  //}
+  #filmaffinity-link {
+    width: 8%;
+    float: right;
+  }
 }
 
 #synopsis {
-  margin-top: 0;
+  clear: both;
+  float: left;
 
   p {
     font-size: 90%;
