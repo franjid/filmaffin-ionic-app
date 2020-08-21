@@ -67,7 +67,7 @@ export class FilmDetailPage {
       proReviews: [],
       userReviews: [],
       numFrames: 0,
-      frames: []
+      frames: [{small: '', large: ''}]
     };
 
     this.sliderSpoilerOpts = {

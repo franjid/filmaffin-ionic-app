@@ -1,3 +1,5 @@
+import { FilmFrame } from "./film-frame";
+
 export interface Film {
   idFilm: number,
   title: string,
@@ -23,5 +25,5 @@ export interface Film {
   proReviews: [],
   userReviews: [],
   numFrames: number,
-  frames: []
+  frames: FilmFrame[]
 }
