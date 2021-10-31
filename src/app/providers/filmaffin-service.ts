@@ -27,6 +27,15 @@ export class FilmaffinServiceProvider {
     return this.http.get(Constants.FILMAFFIN_API_ENDPOINT + '/films?title=' + title);
   }
 
+  getFilmsByType(type: string, name: string, sortBy: string, numResults: number, offset: number) {
+    return this.http.get(
+      Constants.FILMAFFIN_API_ENDPOINT +
+      '/films' +
+      '?teamMemberType=' + type + '&teamMemberName=' + name +
+      '&sort=' + sortBy + '&numResults=' + numResults + '&offset=' + offset
+    );
+  }
+
   getUserFriendsLastRatedFilms(userId: number, numResults: number, offset: number) {
     return this.http.get(
       Constants.FILMAFFIN_API_ENDPOINT + '/users/' + userId + '/friends/films' +

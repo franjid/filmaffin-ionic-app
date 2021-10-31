@@ -1,6 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
       <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
     </ion-buttons>
 
@@ -57,17 +58,32 @@
     <div id="people">
       <div *ngIf="film.directors.length && film.directors[0] !== ''" class="people-element">
         <span class="title">Dirección</span>
-        <span class="content">{{ film.directors.join(", ") }}</span>
+        <span class="content">
+            <span *ngFor="let director of film.directors; let i = index;">
+              <span class="withLink" (click)="loadFilmByType('directors', director)">{{ director }}</span>
+              <span *ngIf="film.directors[i + 1]">, </span>
+            </span>
+        </span>
       </div>
 
       <div *ngIf="film.screenplayers.length && film.screenplayers[0] !== ''" class="people-element">
         <span class="title">Guión</span>
-        <span class="content">{{ film.screenplayers.join(", ") }}</span>
+        <span class="content">
+            <span *ngFor="let screenplayer of film.screenplayers; let i = index;">
+              <span class="withLink" (click)="loadFilmByType('screenplayers', screenplayer)">{{ screenplayer }}</span>
+              <span *ngIf="film.screenplayers[i + 1]">, </span>
+            </span>
+        </span>
       </div>
 
       <div *ngIf="film.actors.length && film.actors[0] !== ''" class="people-element">
         <span class="title">Reparto</span>
-        <span class="content">{{ film.actors.join(", ") }}</span>
+        <span class="content">
+            <span *ngFor="let actor of film.actors; let i = index;">
+              <span class="withLink" (click)="loadFilmByType('actors', actor)">{{ actor }}</span>
+              <span *ngIf="film.actors[i + 1]">, </span>
+            </span>
+        </span>
       </div>
 
       <div *ngIf="film.musicians.length && film.musicians[0] !== ''" class="people-element">

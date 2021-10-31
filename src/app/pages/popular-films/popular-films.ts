@@ -40,7 +40,6 @@ export class PopularFilmsPage {
   async ngOnInit() {
     await this.loadPopularFilms();
     // this.firebaseAnalytics.trackView('popular_films');
-
   }
 
   ionViewDidEnter() {

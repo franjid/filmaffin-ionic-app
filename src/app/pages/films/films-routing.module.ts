@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PopularFilmsPage } from "../popular-films/popular-films";
+import { FilmsByType } from "../films-by-type/films-by-type";
 import { FilmsInTheatresPage } from "../films-in-theatres/films-in-theatres";
 import { FilmDetailPage } from "../film-detail/film-detail";
 import { FavoriteFilmsPage } from "../favorite-films/favorite-films";
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'favorite',
     component: FavoriteFilmsPage,
+  },
+  {
+    path: ':type/:name',
+    component: FilmsByType,
   },
   {
     path: 'friends',

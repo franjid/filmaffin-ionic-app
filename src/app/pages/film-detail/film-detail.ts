@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonContent, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import * as Constants from '../../constants';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { BigPosterModalPage } from '../big-poster-modal/big-poster-modal';
@@ -30,6 +30,7 @@ export class FilmDetailPage {
   sliderFramesOpts;
 
   constructor(
+    public router: Router,
     private actRoute: ActivatedRoute,
     private modalCtrl: ModalController,
     private location: Location,
@@ -195,11 +196,15 @@ export class FilmDetailPage {
       }
     });
 
-    event.target.isBeginning().then((isBeggining) => {
-      if (isBeggining) {
+    event.target.isBeginning().then((isBeginning) => {
+      if (isBeginning) {
         this.showSpoilers[spoilerBoxId] = true;
         this.content.scrollToPoint(0, spoilerBox.offsetTop - 5, 1000);
       }
     });
+  }
+
+  loadFilmByType(type, name) {
+    this.router.navigate(['films', type, name]);
   }
 }

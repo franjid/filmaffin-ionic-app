@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{ name }}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="showSortOptions()">
+        <ion-icon slot="icon-only" src="assets/svg/sort.svg"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <film-list-element *ngFor="let film of films" [film]="film"></film-list-element>
+  <ion-infinite-scroll *ngIf="infiniteScrollEnabled" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
