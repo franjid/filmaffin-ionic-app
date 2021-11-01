@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { AlertController, IonContent, LoadingController, ToastController } from "@ionic/angular";
 import { FilmaffinServiceProvider } from "../../providers/filmaffin-service";
 import * as Constants from "../../constants";
+import { AnalyticsProvider } from "../../providers/analytics";
 
 @Component({
   selector: 'app-films-by-type',
@@ -28,6 +29,7 @@ export class FilmsByType implements OnInit {
     private filmaffinService: FilmaffinServiceProvider,
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
+    private analytics: AnalyticsProvider
   ) {
     this.type = this.actRoute.snapshot.params.type;
     this.name = this.actRoute.snapshot.params.name;
@@ -41,6 +43,10 @@ export class FilmsByType implements OnInit {
     this.sortBy = 'year';
 
     await this.loadFilmByType();
+  }
+
+  ionViewDidEnter() {
+    this.analytics.trackView('films_by_type');
   }
 
   async loadFilmByType() {

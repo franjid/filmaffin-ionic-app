@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { LoadingController, AlertController, IonContent, ToastController } from '@ionic/angular';
 import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import { Router } from '@angular/router';
-import { FirebaseAnalyticsProvider } from "../../providers/firebase-analytics";
+import { AnalyticsProvider } from "../../providers/analytics";
 
 @Component({
   selector: 'films-in-theatres',
@@ -22,7 +22,7 @@ export class FilmsInTheatresPage {
     private filmaffinService: FilmaffinServiceProvider,
     private toastCtrl: ToastController,
     private router: Router,
-    private firebaseAnalytics: FirebaseAnalyticsProvider
+    private analytics: AnalyticsProvider
   ) {
     this.sortBy = 'releaseDate';
   }
@@ -32,7 +32,7 @@ export class FilmsInTheatresPage {
   }
 
   ionViewDidEnter() {
-    this.firebaseAnalytics.trackView('films_in_theatres');
+    this.analytics.trackView('films_in_theatres');
   }
 
   async loadFilmsInTheatres(sortBy: string) {
@@ -79,7 +79,7 @@ export class FilmsInTheatresPage {
   async showSortOptions() {
     const inputHandler = data => {
       if (this.sortBy !== data.value) {
-        this.firebaseAnalytics.trackEvent('films_in_theatres_sort', {sortBy: this.sortBy});
+        this.analytics.trackEvent('films_in_theatres_sort', {sortBy: this.sortBy});
 
         sortOptionsAlert.dismiss();
         this.loadFilmsInTheatres(data.value);

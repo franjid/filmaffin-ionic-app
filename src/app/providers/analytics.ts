@@ -3,7 +3,7 @@ import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 import { Platform } from "@ionic/angular";
 
 @Injectable()
-export class FirebaseAnalyticsProvider {
+export class AnalyticsProvider {
   constructor(
     private platform: Platform,
     private firebaseAnalytics: FirebaseAnalytics
