@@ -9,7 +9,8 @@ import { FilmaffinServiceProvider } from '../../providers/filmaffin-service';
 import { FilmaffinLocalDbServiceProvider } from '../../providers/filmaffin-local-db-service';
 import { AnalyticsProvider } from "../../providers/analytics";
 import { Film } from "../../interfaces/film";
-
+import { AdmobService } from "../../services/admob.service";
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: 'page-film-detail',
@@ -39,7 +40,9 @@ export class FilmDetailPage {
     private loadingCtrl: LoadingController,
     private FilmaffinService: FilmaffinServiceProvider,
     private filmaffinLocalDb: FilmaffinLocalDbServiceProvider,
-    private analytics: AnalyticsProvider
+    private analytics: AnalyticsProvider,
+    private admobService: AdmobService,
+    private storage: Storage,
   ) {
     this.defaultHref = '/films/popular';
 
@@ -91,6 +94,18 @@ export class FilmDetailPage {
 
   ionViewDidEnter() {
     this.analytics.trackView('film_detail');
+    this.admobService.showBanner();
+  }
+
+  ionViewWillLeave() {
+    this.admobService.hideBanner();
+
+    this.storage.get(Constants.Storage.INTERSTITIAL_AD_SHOWED).then((value) => {
+      if (value === true) {
+        this.admobService.prepareInterstitial();
+        this.storage.remove(Constants.Storage.INTERSTITIAL_AD_SHOWED);
+      }
+    });
   }
 
   async loadFilm(filmId) {

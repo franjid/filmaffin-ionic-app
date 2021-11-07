@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Film } from "../interfaces/film";
+import { AdmobService } from "../services/admob.service";
+import { AnalyticsProvider } from "../providers/analytics";
+import * as Constants from '../constants';
 
 @Component({
   selector: 'film-list-element',
@@ -13,13 +16,23 @@ export class FilmListElementComponent implements OnInit {
 
   constructor(
     public router: Router,
+    private admobService: AdmobService,
+    private analytics: AnalyticsProvider,
   ) {
   }
 
   ngOnInit() {
   }
 
-  loadFilm(idFilm) {
-    this.router.navigate(['films', idFilm]);
+  async loadFilm(idFilm) {
+    const route = ['films', idFilm];
+    const numViews = await this.analytics.getViewsBeforeShowAd();
+
+    if (numViews >= Constants.NUM_VIEWS_TO_SHOW_ADD) {
+      this.analytics.resetAdViews();
+      this.admobService.showInterstitial(route);
+    } else {
+      this.router.navigate(route);
+    }
   }
 }

@@ -28,7 +28,7 @@ export class PopularFilmsPage {
     private loadingCtrl: LoadingController,
     private filmaffinService: FilmaffinServiceProvider,
     private toastCtrl: ToastController,
-  private analytics: AnalyticsProvider,
+    private analytics: AnalyticsProvider,
   ) {
     this.numResults = Constants.NUM_RESULTS_POPULAR_FILMS;
     this.resultsOffset = 0;
@@ -39,7 +39,6 @@ export class PopularFilmsPage {
 
   async ngOnInit() {
     await this.loadPopularFilms();
-    // this.analytics.trackView('popular_films');
   }
 
   ionViewDidEnter() {
