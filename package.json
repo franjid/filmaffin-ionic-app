@@ -33,7 +33,7 @@
     "@ionic/angular": "^5.0.0",
     "@ionic/storage": "^2.2.0",
     "cordova-admob-sdk": "0.24.1",
-    "cordova-android": "^8.1.0",
+    "cordova-android": "^10.0.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-androidx": "^2.0.0",
     "cordova-plugin-androidx-adapter": "^1.1.1",
