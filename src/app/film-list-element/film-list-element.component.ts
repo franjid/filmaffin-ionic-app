@@ -32,7 +32,7 @@ export class FilmListElementComponent implements OnInit {
       this.analytics.resetAdViews();
       this.admobService.showInterstitial(route);
     } else {
-      this.router.navigate(route);
+      await this.router.navigate(route);
     }
   }
 }

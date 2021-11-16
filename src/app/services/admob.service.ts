@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free/ngx';
+import { AdMob } from '@admob-plus/ionic/ngx';
 import { Router } from "@angular/router";
 import * as Constants from "../constants";
 import { Storage } from "@ionic/storage";
@@ -11,77 +11,75 @@ import { AnalyticsProvider } from "../providers/analytics";
 })
 
 export class AdmobService {
-  bannerConfig: AdMobFreeBannerConfig = {
-    // isTesting: true,
-    autoShow: true,
-    id: "ca-app-pub-6110433810592970/1728206641"
-  };
-
-  interstitialConfig: AdMobFreeInterstitialConfig = {
-    // isTesting: true,
-    autoShow: false,
-    id: "ca-app-pub-6110433810592970/5284308271"
-  };
+  banner;
+  interstitial;
 
   constructor(
     public platform: Platform,
-    private admobFree: AdMobFree,
+    private admob: AdMob,
     public router: Router,
     private storage: Storage,
     private analytics: AnalyticsProvider,
   ) {
-    platform.ready().then(() => {
-      if (platform.is('cordova')) {
-        this.admobFree.banner.config(this.bannerConfig);
+    this.platform.ready().then(async () => {
+      if (this.platform.is('cordova')) {
+        this.admob.start().then(() => {
+          this.banner = new this.admob.BannerAd({
+            // adUnitId: 'ca-app-pub-3940256099942544/6300978111', // testing
+            adUnitId: 'ca-app-pub-6110433810592970/1728206641', // prod
+          });
 
-        this.admobFree.interstitial.config(this.interstitialConfig);
-        this.prepareInterstitial();
+          this.interstitial = new this.admob.InterstitialAd({
+            // adUnitId: 'ca-app-pub-3940256099942544/1033173712', // testing
+            adUnitId: 'ca-app-pub-6110433810592970/5284308271', // prod
+          })
+
+          this.hideBanner()
+          this.prepareInterstitial()
+        })
       }
     });
   }
 
   showBanner() {
     if (this.platform.is('cordova')) {
-      this.admobFree.banner.prepare().then((v) => {
-      }).catch(e =>
-        console.log('Error loading Banner', e)
-      );
+      this.banner.show().then(() => {
+      })
     }
   }
 
   hideBanner() {
     if (this.platform.is('cordova')) {
-      this.admobFree.banner.remove().then(() => {
-      }).catch(e =>
-        console.log('Error removing Banner', e)
-      );
+      this.banner.hide().then(() => {
+      }).catch(e => {
+        console.log('Error hidding banner', e);
+      });
     }
   }
 
   prepareInterstitial() {
     if (this.platform.is('cordova')) {
-      this.admobFree.interstitial.prepare().then(() => {
-        console.log('Interstitial prepared');
-      }).catch(e =>
-        console.log('Error loading Interstitial: ', e)
-      );
+      this.interstitial.load().then(() => {
+      }).catch(e => {
+        console.log('Error showing Interstitial', e);
+      });
     }
   }
 
   showInterstitial(route) {
-    if (this.platform.is('cordova')) {
-      this.admobFree.interstitial.isReady().then(() => {
-        this.admobFree.interstitial.show().then(() => {
-          this.storage.set(Constants.Storage.INTERSTITIAL_AD_SHOWED, true);
-          this.analytics.trackView('ad_interstitial');
-          this.router.navigate(route);
-        })
-          .catch(e => {
-            console.log('Error showing Interstitial', e);
-            this.router.navigate(route);
-          });
-      })
-        .catch(e => console.log('Error loading Interstitial', e));
+    if (!this.platform.is('cordova')) {
+      this.router.navigate(route);
+      return;
     }
+
+    this.interstitial.show().then(() => {
+      this.storage.set(Constants.Storage.INTERSTITIAL_AD_SHOWED, true);
+      this.analytics.trackView('ad_interstitial');
+      this.router.navigate(route);
+    })
+      .catch(e => {
+        console.log('Error showing Interstitial', e);
+        this.router.navigate(route);
+      });
   }
 }

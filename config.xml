@@ -4,6 +4,7 @@
     <description>Filmaffinity App (no oficial)</description>
     <author email="contacto@filmaffin.com" href="http://filmaffin.com/">Filmaffin Team</author>
     <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -22,6 +23,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
+        <preference name="AndroidXEnabled" value="true" />
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />
             <application android:usesCleartextTraffic="true" />
@@ -101,5 +103,4 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="cordova-sqlite-storage" spec="^5.0.0" />
 </widget>

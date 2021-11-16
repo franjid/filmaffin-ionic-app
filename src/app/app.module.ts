@@ -20,7 +20,7 @@ import { registerLocaleData } from '@angular/common';
 import { FirebaseAnalytics } from "@ionic-native/firebase-analytics/ngx";
 import { AnalyticsProvider } from "./providers/analytics";
 import { FilmaffinServiceProvider } from "./providers/filmaffin-service";
-import { AdMobFree } from '@ionic-native/admob-free/ngx';
+import { AdMob } from '@admob-plus/ionic/ngx';
 import { AdmobService } from './services/admob.service';
 
 registerLocaleData(es);
@@ -52,7 +52,7 @@ registerLocaleData(es);
     FilmaffinServiceProvider,
     LocalDbServiceProvider,
     FilmaffinLocalDbServiceProvider,
-    AdMobFree,
+    AdMob,
     AdmobService
   ],
   bootstrap: [AppComponent],
